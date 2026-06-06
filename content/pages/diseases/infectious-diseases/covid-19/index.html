@@ -1,0 +1,58 @@
+
+<figure class="aligncenter" style="max-width: 600px">
+  <img src="/assets/7db0c899-c0fa-47ad-bd37-7126fcbeb8ee" alt="Illustration of the SARS-CoV-2 coronavirus" />
+  <figcaption>The SARS-CoV-2 coronavirus, the cause of COVID-19.</figcaption>
+</figure>
+<p><strong>COVID-19 is the disease caused by the coronavirus SARS-CoV-2. When it emerged in late 2019, Folding@home turned its full global compute capacity onto the virus and helped reveal how its proteins move, exposing hidden binding pockets that antiviral drugs could target.</strong></p>
+<h2>The disease</h2>
+<p>COVID-19 emerged in Wuhan, China in December 2019 and spread globally within three months. The World Health Organization declared a public health emergency in March 2020 and lifted that declaration in May 2023. The virus has caused over 7 million confirmed deaths, with broader estimates ranging from 18 to 35 million.</p>
+<p>SARS-CoV-2 spreads through aerosols and respiratory droplets, often before symptoms appear. About a third of those infected never feel sick, but those who do feel cough, fever, fatigue, and loss of taste or smell. Vaccines first reached the public in late 2020, and oral antivirals like Paxlovid followed for high-risk patients.</p>
+<h2>The viral proteins we simulated</h2>
+<p>Like every virus, SARS-CoV-2 relies on a small set of proteins to enter cells, copy itself, and assemble new viral particles. Disable one of those proteins and the virus stops spreading. The most important targets:</p>
+<ul>
+<li><strong>Spike</strong> — the protein studded across the surface of the virus that latches onto human cells. It's what every COVID vaccine teaches the immune system to recognize.</li>
+<li><strong>Main protease (Mpro)</strong> — the enzyme the virus uses to cut its long viral proteins into the working pieces it needs to replicate. Paxlovid blocks Mpro.</li>
+<li><strong>RNA polymerase</strong> — the enzyme that copies the viral genome to make new viruses.</li>
+<li><strong>Nsp16</strong> — a viral enzyme that disguises viral RNA to evade the human immune system.</li>
+</ul>
+<p>Experimental methods like cryo-electron microscopy reveal what a protein looks like — but only as a single frozen snapshot. Most proteins have many moving parts, and the snapshots miss every other configuration the protein passes through. Folding@home runs molecular dynamics simulations on millions of donated computers to trace the full motion of a protein, atom by atom, revealing the transient pockets and conformations that experiments can't capture.</p>
+<figure class="aligncenter" style="max-width: 400px">
+  <video controls autoplay loop muted playsinline preload="metadata" style="width: 100%; height: auto; display: block">
+    <source src="/assets/79bb75f7-6f65-4477-a584-4b78fc2bf984" type="video/mp4" />
+  </video>
+  <figcaption>A Folding@home simulation of Ebola virus protein VP35 reveals a cryptic binding pocket that opens and closes — invisible to any single experimental snapshot. The same technique exposed new drug targets in SARS-CoV-2.</figcaption>
+</figure>
+<p>For SARS-CoV-2, Folding@home's spike simulations predicted that the spike protein opens up far more widely than experimental snapshots had shown, exposing surfaces that drugs and antibodies could potentially target. In 2025, cryo-EM experiments confirmed those predictions — five years after the simulations first made them.</p>
+<h2>The COVID Moonshot</h2>
+<p>Beyond simulation, Folding@home joined the <strong>COVID Moonshot</strong>, an open-science collaboration to design a patent-free oral antiviral targeting Mpro. Volunteers and chemists around the world proposed candidate compounds; Folding@home computed which ones were most likely to bind tightly enough to work; the most promising were synthesized and tested in labs.</p>
+<p>In September 2021, the Moonshot received a $10M grant from the Wellcome Trust, on behalf of the WHO Access to COVID Tools (ACT) Accelerator, to push its lead compounds toward preclinical studies.</p>
+<h2>Open science</h2>
+<p>Simulation data from Folding@home's SARS-CoV-2 work is released publicly so other researchers can check the analysis or apply new methods. The data lives on the Open Science Framework: <a href="https://osf.io/2h6p4/wiki/home/" target="_blank" rel="noreferrer noopener">main dataset</a> and <a href="https://osf.io/dp4cb/wiki/home/" target="_blank" rel="noreferrer noopener">supplementary data</a>.</p>
+<h2>Selected posts</h2>
+<div class="card-grid">
+<a class="card" href="/news/foldinghome-takes-up-the-fight-against-covid-19-2019-ncov">
+<div class="card-thumb"><img src="/assets/a6f421d5-fb98-47dc-ba09-ecdb857bbcc2" alt="" loading="lazy"></div>
+<div class="card-body"><h3>F@H takes up the fight</h3><p>February 2020 — the launch of Folding@home's COVID-19 effort.</p></div>
+</a>
+<a class="card" href="/news/capturing-the-covid-19-demogorgon-aka-spike-in-action">
+<div class="card-thumb"><img src="/assets/df376bf6-174e-4382-9a42-1c11c2223b53" alt="" loading="lazy"></div>
+<div class="card-body"><h3>Capturing the spike in action</h3><p>April 2020 — early simulations reveal hidden motions in the spike protein.</p></div>
+</a>
+<a class="card" href="/news/citizen-scientists-create-an-exascale-computer-to-combat-covid-19">
+<div class="card-thumb"><img src="/assets/4d952d63-eda9-48ee-adc4-940f3057c690" alt="" loading="lazy"></div>
+<div class="card-body"><h3>An exascale computer</h3><p>July 2020 — donated machines collectively cross the exascale barrier.</p></div>
+</a>
+<a class="card" href="/news/sars-cov-2-nsp16-activation-mechanism-and-a-cryptic-pocket-with-pan-coronavirus-antiviral-potential">
+<div class="card-thumb"><img src="/assets/bbd98e18-1241-47ee-8e73-3725bb8d95cb" alt="" loading="lazy"></div>
+<div class="card-body"><h3>A cryptic pocket in Nsp16</h3><p>December 2020 — a pan-coronavirus target hidden in a viral RNA-disguising enzyme.</p></div>
+</a>
+<a class="card" href="/news/covid-moonshot-wellcome-trust-funding">
+<div class="card-thumb"><img src="/assets/65a088a6-22ab-4f1b-bb0b-6706b8a1b01f" alt="" loading="lazy"></div>
+<div class="card-body"><h3>$10M Wellcome Trust grant</h3><p>September 2021 — the Moonshot moves toward preclinical studies.</p></div>
+</a>
+<a class="card" href="/news/experimental-confirmation-of-spike-dynamics">
+<div class="card-thumb"><img src="/assets/1e444ae3-51de-435a-95e7-b8bef1bb829c" alt="" loading="lazy"></div>
+<div class="card-body"><h3>Experimental confirmation</h3><p>June 2025 — cryo-EM validates the 2020 prediction of how widely the spike opens.</p></div>
+</a>
+</div>
+

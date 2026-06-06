@@ -1,0 +1,246 @@
+// additionalData (in nuxt.config.ts) doesn't apply to top-level `css: [...]`
+// stylesheets, only to SFC <style> blocks. Require tokens explicitly here.
+@require './tokens.styl'
+
+*, *::before, *::after
+  box-sizing border-box
+
+html, body
+  margin 0
+  padding 0
+
+body
+  background body-bg
+  color text-color
+  font-family font-body
+  font-size fz-base
+  line-height 1.5
+
+h1, h2, h3, h4, h5, h6
+  font-family font-headings
+  font-weight 700
+  line-height 1.2
+  margin 0 0 0.5em
+
+h1
+  font-size fz-h1
+h2
+  font-size fz-h2
+h3
+  font-size fz-h3
+h4
+  font-size fz-h4
+h5
+  font-size fz-h5
+h6
+  font-size fz-h6
+
+a
+  color primary
+  text-decoration none
+
+a:hover
+  text-decoration underline
+
+img
+  max-width 100%
+  height auto
+
+main
+  min-height "calc(100vh - %s)" % navbar-h
+
+// Typography utility classes carried over from the original folding2016
+// theme — used by CMS body content such as the "MAXIMIZE your EFFORT"
+// display heading on /statistics.
+@font-face
+  font-family 'SaintEliaRough'
+  src url('/fonts/santeliaroughbold-webfont.woff2') format('woff2'), url('/fonts/santeliaroughbold-webfont.woff') format('woff')
+  font-weight 700
+  font-style normal
+  font-display swap
+
+.font__saint-elia
+  font-family 'SaintEliaRough'
+  text-transform none
+
+.fontsize__double
+  font-size 75%
+  @media (min-width: 768px)
+    font-size 100%
+
+.fontsize__triple
+  font-size 85%
+  @media (min-width: 768px)
+    font-size 150%
+
+.fontcolor__primary
+  color primary
+
+.lineheight__half
+  line-height 0.5
+
+// ---------- Content components ----------
+// Reusable building blocks for CMS-driven page content. Section eyebrows,
+// card grids, numbered steps, inline diagrams, callouts. Used by
+// /diseases, /science/papers, /faq/how-it-works — and available to any
+// future page that wants the same look.
+
+.card-grid
+  display grid
+  grid-template-columns 1fr
+  gap 1.25rem
+  margin 0 0 2rem
+  @media (min-width: 720px)
+    grid-template-columns repeat(2, 1fr)
+  @media (min-width: bp-md)
+    grid-template-columns repeat(4, 1fr)
+
+.card
+  display block
+  background #fff
+  color inherit
+  text-decoration none
+  border-top 4px solid primary
+  overflow hidden
+  transition transform 0.18s, box-shadow 0.18s
+
+a.card:hover
+  transform translateY(-2px)
+  box-shadow 0 12px 30px rgba(0,0,0,0.12)
+  text-decoration none
+
+.card-thumb
+  width 100%
+  aspect-ratio 4 / 3
+  overflow hidden
+  background body-bg
+
+.card-thumb img
+  width 100%
+  height 100%
+  object-fit cover
+  display block
+  margin 0
+
+.card-body
+  padding 1rem 1.1rem 1.25rem
+
+.card-body h3
+  font-family font-headings
+  text-transform uppercase
+  font-size 1.25rem
+  line-height 1.2
+  margin 0 0 0.35rem
+
+.card-body p
+  margin 0
+  font-size 0.95rem
+  line-height 1.45
+
+.card-meta
+  font-family font-headings
+  font-weight 700
+  text-transform uppercase
+  color primary
+  font-size 0.85rem
+  letter-spacing 0.08em
+  margin 0 0 0.35rem
+
+.card.text-card
+  border-top 0
+  border-left 4px solid primary
+  padding 1.5rem 1.25rem
+
+.card.text-card .card-body
+  padding 0
+
+// "More" / "Read more" / "Browse all" link box. Single-line CTA in
+// headings font with a primary-colored left border. Used for cross-
+// linking from one section to another at the end of a body of prose.
+.more-link
+  clear both
+  margin-top 2.5rem
+  padding 1rem 1.25rem
+  border-left 4px solid primary
+  background #fff
+
+.more-link a
+  font-family font-headings
+  text-transform uppercase
+  letter-spacing 0.04em
+  font-size 0.95rem
+
+// Code styling for CMS body content (any slug rendered through
+// [...slug].vue). Inline <code> gets a subtle pill background;
+// <pre><code> blocks get a dark code panel with a primary-color
+// left border to match .more-link / .card.text-card.
+.body code
+  font-family ui-monospace, 'SF Mono', Menlo, Consolas, monospace
+  font-size 0.92em
+  background rgba(20, 30, 50, 0.08)
+  padding 0.1em 0.35em
+  border-radius 3px
+
+.body pre
+  background #1a1a1a
+  color #e8e8e8
+  border-left 4px solid primary
+  border-radius 3px
+  padding 1rem 1.25rem
+  margin 1.25rem 0
+  line-height 1.55
+  overflow-x auto
+
+.body pre code
+  background transparent
+  padding 0
+  color inherit
+  font-size 0.9rem
+
+.two-col
+  columns 18em 2
+  column-gap 2.5rem
+  margin 1rem 0
+  padding 0
+
+.two-col li
+  break-inside avoid
+  padding 0.25rem 0
+  line-height 1.55
+
+.steps
+  list-style none
+  counter-reset step
+  padding 0
+  margin 1rem 0
+
+.steps li
+  position relative
+  padding 0.5rem 0 0.5rem 2.75rem
+  counter-increment step
+  font-size 1rem
+  line-height 1.55
+
+.steps li::before
+  content counter(step)
+  position absolute
+  left 0
+  top 0.55rem
+  width 28px
+  height 28px
+  background primary
+  color text-light
+  font-family font-headings
+  font-weight 700
+  border-radius 50%
+  display grid
+  place-items center
+  font-size 0.85rem
+
+.diagram
+  width 100%
+  max-width 420px
+  height auto
+  margin 1rem auto
+  display block
+

@@ -1,0 +1,271 @@
+<figure class="alignright" style="max-width: 140px"><img src="/assets/7b5f898c-b199-4295-bb0e-ef6c3477ce26" alt="Statue of Bastet, the Ancient Egyptian goddess associated with cats and protection from disease — the codename of the v8 Folding@home client" /><figcaption>Bastet, the v8 client's codename.</figcaption></figure>
+
+<p>This guide covers version 8.5 of the Folding@home client, codenamed "<a href="https://en.wikipedia.org/wiki/Bastet" rel="noopener" target="_blank">Bastet</a>" after the Ancient Egyptian goddess associated with cats and protection from disease. v8 is a complete rewrite of the client, designed to simplify setup, lay a foundation for new features, and encourage community contributions.</p>
+
+<p>If you've never installed Folding@home before, start with <a href="/faq/getting-started">getting started</a> for a high-level overview, then come back here for the v8.5-specific details.</p>
+
+<h2 id="contents">Contents</h2>
+
+<ul>
+  <li><a href="#whats-new">What's new in v8.5</a></li>
+  <li><a href="#changes-from-v7">Changes from v7</a></li>
+  <li><a href="#download">Downloading the software</a></li>
+  <li><a href="#install">Installation</a></li>
+  <li><a href="#web-control">Using Web Control</a></li>
+  <li><a href="#machines-page">The Machines page</a></li>
+  <li><a href="#machine-settings">Machine settings</a></li>
+  <li><a href="#stats-page">The Stats page</a></li>
+  <li><a href="#projects-news">Projects and News</a></li>
+  <li><a href="#log-viewer">The Log Viewer</a></li>
+  <li><a href="#viewer-3d">The 3D Protein Viewer</a></li>
+  <li><a href="#dark-mode">Dark Mode</a></li>
+  <li><a href="#help">Getting help</a></li>
+  <li><a href="#open-source">Open-source contribution</a></li>
+</ul>
+
+<h2 id="whats-new">What's new in v8.5</h2>
+
+<p>v8.5 is primarily a maintenance release. The user-visible addition is a new <strong>plot of user and team points</strong> on the Stats page; the rest is bug fixes. The full details are in the changelogs for <a href="https://github.com/FoldingAtHome/fah-client-bastet/blob/master/CHANGELOG.md" rel="noopener" target="_blank">fah-client-bastet</a> and <a href="https://github.com/FoldingAtHome/fah-web-client-bastet/blob/master/CHANGELOG.md" rel="noopener" target="_blank">fah-web-client-bastet</a>.</p>
+
+<h2 id="changes-from-v7">Changes from v7</h2>
+
+<p>If you're coming from v7, three things are different:</p>
+
+<ol>
+  <li><strong>Two pieces, not three.</strong> The v7 client had a backend (<em>FAHClient</em>), an advanced control panel (<em>FAHControl</em>), and a 3D viewer (<em>FAHViewer</em>) as three separate programs. v8 has just the backend (<a href="https://github.com/FoldingAtHome/fah-client-bastet" rel="noopener" target="_blank">fah-client-bastet</a>) and a browser-based frontend (<a href="https://github.com/FoldingAtHome/fah-web-client-bastet" rel="noopener" target="_blank">fah-web-client-bastet</a>) called <strong>Web Control</strong>. Web Control rolls all of FAHControl's features plus the 3D viewer into one interface.</li>
+  <li><strong>No more folding slots.</strong> In v7 you configured each compute resource as a "slot". In v8 you just tell the client which CPUs and GPUs to use, and the client allocates work to them automatically.</li>
+  <li><strong>Remote control via a Folding@home Account.</strong> Optional, but a big quality-of-life win if you fold on more than one machine. Sign in once, and you can monitor and control every machine you've registered — from any browser, including your phone, anywhere in the world.</li>
+</ol>
+
+<h2 id="download">Downloading the software</h2>
+
+<p>v8.5 is the current public release. Get it from the <a href="/download">download page</a>. Older v7 releases are still available, but using them is no longer recommended.</p>
+
+<h2 id="install">Installation</h2>
+
+<p>Folding@home v8 runs on Windows, macOS, and Linux. You only need administrator privileges to <em>install</em> the client; once it's installed, any user can fold.</p>
+
+<h3>Windows</h3>
+
+<ul>
+  <li>Download the Windows installer from the download page.</li>
+  <li>Run the installer.</li>
+  <li>If Windows SmartScreen prompts, approve it.</li>
+  <li>The client starts in the background once the install completes.</li>
+</ul>
+
+<h3>macOS</h3>
+
+<ul>
+  <li>Download the installer package.</li>
+  <li>Open it in Installer.</li>
+  <li>Enter your administrator name and password when prompted.</li>
+  <li>The client starts in the background once the install completes.</li>
+  <li>Copy the Web Control URL shown on the installer's last panel into a browser <em>other than Safari</em> — Safari blocks the local connection Web Control needs to talk to the client.</li>
+</ul>
+
+<h3>Linux (Debian / Ubuntu)</h3>
+
+<p>Download the <code>fah-client_*.deb</code> package and install it:</p>
+
+<pre><code>sudo dpkg -i fah-client_*.deb
+sudo apt-get install -f   # pulls in any missing dependencies</code></pre>
+
+<p>The client runs as a systemd service named <code>fah-client</code> after install. You can check its status with <code>systemctl status fah-client</code>.</p>
+
+<h3>Linux (Fedora / RHEL / openSUSE)</h3>
+
+<p>Download the <code>fah-client-*.rpm</code> package and install it:</p>
+
+<pre><code>sudo dnf install ./fah-client-*.rpm        # Fedora / RHEL
+sudo zypper install ./fah-client-*.rpm     # openSUSE</code></pre>
+
+<p>Same as Debian/Ubuntu, the client runs as a systemd service named <code>fah-client</code> after install.</p>
+
+<h3>Headless or server installs</h3>
+
+<p>The client itself doesn't require a graphical environment. After installing the Linux package, you can configure the client by editing <code>/etc/fah-client/config.xml</code> — see <a href="#connecting-headless">connecting headless machines</a> below.</p>
+
+<h2 id="web-control">Using Web Control</h2>
+
+<p>The v8 client is controlled through a web browser. Open <a href="https://app.foldingathome.org/" rel="noopener" target="_blank">app.foldingathome.org</a> — your browser will connect to the Folding@home client running on the same computer.</p>
+
+<figure class="aligncenter size-large"><img src="/assets/76578c88-f544-49ad-aaab-bf04647e1a14" alt="Web Control as it appears before a local client has been started — empty Machines list"/><figcaption>Web Control without a local client.</figcaption></figure>
+
+<figure class="aligncenter size-large"><img src="/assets/ed809bf7-f541-46ff-bc1b-5686c823b6cc" alt="Web Control after detecting the local client — the machine appears in the Machines list"/><figcaption>Web Control connected to the local client.</figcaption></figure>
+
+<p>Once the client is installed and running, the local machine appears on the Machines page after a short delay. (Note: v8.5 Web Control can only talk to v8.3 or newer clients.)</p>
+
+<h3 id="folding-account">Optional: a Folding@home Account</h3>
+
+<p>Registering for a Folding@home Account lets you control every one of your machines from one place — including from a phone, even when you're away from the machine.</p>
+
+<figure class="aligncenter size-large"><img src="/assets/121dfa1d-8da2-4851-a368-f76d92033576" alt="Account registration screen, showing fields for email and passphrase with options to auto-generate and reveal the passphrase"/><figcaption>The Folding@home Account registration screen.</figcaption></figure>
+
+<p>Registration needs a valid email address and a <strong>passphrase</strong>. (A passphrase is <em>not</em> the same as a passkey — the passphrase signs you into your account; a passkey ties returned Work Units to a donor identity. See <a href="/faq/stats">Points, stats &amp; passkey</a> for the distinction.) Web Control can generate a four-random-words passphrase for you with the <span class="fa fa-refresh"></span> button; the <span class="fa fa-eye-slash"></span> button reveals it; <span class="fa fa-copy"></span> copies it to the clipboard.</p>
+
+<p>If your local client is already configured, your username, team, and passkey auto-fill (these three fields are optional during registration). After you click <strong>Register</strong>, an activation email is sent — click the link in it to finish setup.</p>
+
+<figure class="aligncenter size-large"><img src="/assets/4863992a-cd07-4017-a923-52385cf02222" alt="Web Control login screen with fields for email address and passphrase"/><figcaption>Web Control login screen.</figcaption></figure>
+
+<p>Once you're logged in, the user icon in the top right opens your account settings, and every machine you've connected to the account appears on the Machines page.</p>
+
+<h3>Account settings</h3>
+
+<figure class="aligncenter size-large"><img src="/assets/6351552e-eae4-470f-a441-4687a6e22072" alt="Account settings screen with Username, Team, Passkey, Cause, Node and Token fields"/><figcaption>Account settings.</figcaption></figure>
+
+<p>The <strong>Account</strong> section sets your <strong>Username</strong>, <strong>Team</strong>, and <strong>Passkey</strong> — these determine how your contribution shows up on the public stats. <a href="/faq/stats">Points, stats &amp; passkey</a> covers what each one does.</p>
+
+<p>The <strong>Cause</strong> setting tells the assignment server which research area you'd like to support most. The server will try to send you projects matching your preference but can't guarantee it (some Causes have more or less work available at any given time).</p>
+
+<p>The <strong>Node</strong> and <strong>Token</strong> fields control how your machines connect to your account — see the next section for how to use them.</p>
+
+<p>For changes to take effect, click the <img src="/assets/56852f9d-f5b6-4e9c-b4e5-9c4281645114" alt="Save" style="width:100px;vertical-align:middle"/> button in the top right. The <img src="/assets/a38f8441-b66d-4dd1-864e-1168485d794c" alt="Cancel" style="width:100px;vertical-align:middle"/> button discards unsaved changes.</p>
+
+<p>The <strong>Machines</strong> section lets you manage and configure your machines, including disconnecting them from your account. Changes take effect immediately. <strong>Warning:</strong> disconnecting a machine makes it inaccessible from your account — a manual reconnection is required to bring it back.</p>
+
+<h3 id="connecting-machines">Connecting machines to your account</h3>
+
+<p>A machine running v8 connects to your account either automatically or manually:</p>
+
+<ul>
+  <li><strong>Automatic.</strong> If the client is running on the same machine your browser is on, <em>and</em> the client isn't already linked to another account, signing in via Web Control connects it. Install the client, sign into your account once, and you're done.</li>
+  <li><strong>Manual.</strong> Used when the local machine is already connected to a different account, or has no browser (see below). Use the link icon in <strong>Account Settings</strong> to change the connection.</li>
+</ul>
+
+<h4 id="connecting-headless">Manually connecting headless machines</h4>
+
+<p>For machines without a graphical user interface (a home server, a Raspberry Pi running headless, etc.), you connect using the current account token. Copy the token from your account settings in any browser, then write it into <code>/etc/fah-client/config.xml</code> on the headless machine:</p>
+
+<pre><code>&lt;config&gt;
+  &lt;account-token v="&lt;your account token&gt;"/&gt;
+  &lt;machine-name v="&lt;a display name for this machine&gt;"/&gt;
+&lt;/config&gt;</code></pre>
+
+<p>Restart the client (<code>sudo systemctl restart fah-client</code>) and the machine appears in your account.</p>
+
+<p>After you've added the machines, <strong>generate a fresh token</strong> in Account Settings. Only the most recent account token can add new machines, so rotating it prevents anyone else from using a leaked copy to attach their hardware to your account.</p>
+
+<p>The account <strong>node</strong> (typically <code>node1.foldingathome.org</code>) is set automatically. It's possible to run your own node — advanced, but documented in the <a href="https://github.com/FoldingAtHome/fah-node" rel="noopener" target="_blank">fah-node project</a>.</p>
+
+<h2 id="machines-page">The Machines page</h2>
+
+<figure class="aligncenter size-large"><img src="/assets/0866072a-2b98-4593-a388-e98d3e460b6b" alt="Web Control showing the Machines page with a Fold button, a Pause button, and a list of folding machines with active Work Units"/><figcaption>Web Control with a Folding@home Account — all your machines listed.</figcaption></figure>
+
+<p>The Machines page is the screen you land on. Without an account it shows the local machine; signed in, it shows everything you've registered.</p>
+
+<p>In the header are two large buttons: <strong>Fold</strong> and <strong>Pause</strong>. Fold starts folding on every machine in view; Pause stops them. If you're just getting started, configure your username and team before clicking Fold.</p>
+
+<p>The body of the page lists each machine and any active <strong>Work Units</strong> (chunks of protein-folding simulation). For each WU you see progress, status, and a few action buttons on the right — including one to dump the WU (only do this when something is genuinely wrong; see <a href="/faq/rules">fair-play rules</a>) and one to open the 3D Protein Viewer.</p>
+
+<h2 id="machine-settings">Machine settings</h2>
+
+<figure class="aligncenter size-large"><img src="/assets/38aefe83-86d6-4684-9a67-53811727a5a4" alt="Per-machine settings screen with Scheduling toggles and Resource Usage sliders for CPUs and GPUs"/><figcaption>Machine settings.</figcaption></figure>
+
+<p>Click the gear icon on a machine to open its per-machine settings. Note: when you're not logged into an account, this screen also includes the account fields (username, team, passkey) because there's no global account-settings page to put them on.</p>
+
+<h3>Scheduling</h3>
+
+<p>Controls when folding actually runs:</p>
+
+<ul>
+  <li><strong>Only When Idle</strong> — fold only when nobody is using the keyboard or mouse.</li>
+  <li><strong>While On Battery</strong> — allow folding on a laptop that isn't plugged in.</li>
+  <li><strong>Keep Awake</strong> — prevent the machine from going to sleep so folding can continue.</li>
+</ul>
+
+<h3>Resource usage</h3>
+
+<p>The <strong>CPUs</strong> slider sets how many CPU cores Folding@home is allowed to use. You can change it at any time, but setting it too low while a WU is already running may cause that WU to fail — pause first if you want to drop the count significantly.</p>
+
+<p>The <strong>GPUs</strong> section lists every supported GPU on your machine, each with its own enable/disable checkbox. GPU folding is much more efficient than CPU folding and usually earns substantially more points; if you don't want a particular GPU folding (say, the one your monitor is plugged into), uncheck it here. See <a href="/faq/troubleshooting">troubleshooting</a> if your GPU isn't being detected.</p>
+
+<h3>Advanced</h3>
+
+<figure class="aligncenter size-large"><img src="/assets/2229baba-7ff4-41a4-8e6f-63a24f367605" alt="Machine settings in advanced mode, showing Beta Projects toggle, Project Key, and Resource Groups options"/><figcaption>Machine settings in Advanced Mode.</figcaption></figure>
+
+<p>Click the lock icon in the bottom right of the Machine Settings screen to unlock the advanced controls. These are primarily for testing — experts only, and easy to misuse.</p>
+
+<ul>
+  <li><strong>Beta Projects</strong> — allow assignment of in-testing projects. Earns fewer or unpredictable points; useful for catching client bugs before they ship to everyone.</li>
+  <li><strong>Project Key</strong> — restricts the machine to a single project. Used by Folding@home staff to focus a test rig on a specific pre-beta project; not something most donors will ever set. Leave at zero to disable.</li>
+  <li><strong>Resource Groups</strong> — split a machine's compute resources into multiple independently configured pools. Usually used with a Project Key to test a particular kind of work. <em>It is possible to over-allocate resources this way, which can hang the machine.</em></li>
+</ul>
+
+<h2 id="stats-page">The Stats page</h2>
+
+<figure class="aligncenter size-large"><img src="/assets/ca99d51f-5eae-4fb9-ac4a-0e6d57404e25" alt="Stats page showing your total points, team ranking, points-over-time plot, and milestone certificates"/><figcaption>The Stats page, with the new v8.5 points plot.</figcaption></figure>
+
+<p>The Stats page shows your point totals, ranking, and a chart of your contribution over time (new in v8.5). You can also download milestone certificates here — nice for sharing.</p>
+
+<p>For how points are actually calculated, the QRB rules, deadlines, and the difference between passkey and passphrase, see <a href="/faq/stats">Points, stats &amp; passkey</a>.</p>
+
+<h2 id="projects-news">Projects and News</h2>
+
+<div style="display: flex; flex-wrap: wrap; gap: 1.25rem; justify-content: center; margin: 1.5rem 0;">
+  <figure style="margin: 0; flex: 0 1 320px;"><img src="/assets/8607a700-496c-4536-9818-e5c124de59a3" alt="Projects page listing the research projects your machines are currently folding, with project IDs and brief descriptions" /><figcaption>The Projects page.</figcaption></figure>
+  <figure style="margin: 0; flex: 0 1 320px;"><img src="/assets/ae459f5b-f155-4096-b7b8-96fc60ba4082" alt="News page showing recent Folding@home blog posts with titles and dates" /><figcaption>The News page.</figcaption></figure>
+</div>
+<p>The <strong>Projects</strong> page lists the research projects your machines are actively folding — project IDs, brief descriptions, and which of your machines are working on what. The page is empty when you're not folding.</p>
+
+<p>The <strong>News</strong> page mirrors the recent posts from the <a href="/news">Folding@home blog</a> so you don't have to leave Web Control to keep up with what the labs are publishing.</p>
+
+<h2 id="log-viewer">The Log Viewer</h2>
+
+<figure class="aligncenter size-large"><img src="/assets/5a38c10c-11d4-49a6-bdff-86de3107c3da" alt="Log Viewer showing client log lines, with Search, Errors and Warnings filter checkboxes, Reset, and Follow controls"/><figcaption>The Log Viewer.</figcaption></figure>
+
+<p>The Log Viewer shows the running log of every folding simulation on your machine. Reading the log usually means caring about the technical details — you'll probably be sent here by a forum moderator or developer when something needs diagnosing.</p>
+
+<ul>
+  <li><strong>Search</strong> — filter the log for lines matching a string.</li>
+  <li><strong>Errors</strong> / <strong>Warnings</strong> checkboxes — show only error- or warning-level messages.</li>
+  <li><strong>Reset</strong> — clear the filters.</li>
+  <li><strong>Follow</strong> — auto-scroll as new lines arrive.</li>
+</ul>
+
+<p>For common log-derived diagnoses (EUE failures, GPU not detected, "no work units available"), see <a href="/faq/troubleshooting">troubleshooting</a>.</p>
+
+<h2 id="viewer-3d">The 3D Protein Viewer</h2>
+
+<figure class="aligncenter size-large"><img src="/assets/5af7f113-8bb0-4521-a26e-5538d9c75fd3" alt="3D protein viewer rendering a folded protein structure, with mode buttons and frame controls"/><figcaption>The 3D Protein Viewer.</figcaption></figure>
+
+<p>Click the <span class="fa fa-eye"></span> icon next to any active Work Unit on the Machines page to open the 3D viewer. It renders the protein your computer is simulating in real time:</p>
+
+<ul>
+  <li>Mouse wheel zooms.</li>
+  <li>Left-click-and-drag rotates.</li>
+  <li>The <strong>1</strong>, <strong>2</strong>, and <strong>3</strong> buttons switch between three rendering styles (cartoon, ball-and-stick, surface).</li>
+  <li>As the simulation progresses it snapshots the protein into <strong>frames</strong> — the arrow buttons cycle through them. If no frames are available yet the counter reads <em>0 of 0</em>.</li>
+</ul>
+
+<h2 id="dark-mode">Dark Mode</h2>
+
+<figure class="aligncenter size-large"><img src="/assets/082e0025-070f-429a-8665-c7b8681a2a68" alt="Web Control in dark mode, with a dark background and light text"/><figcaption>Dark mode.</figcaption></figure>
+
+<p>Account Settings → Appearance toggles between light and dark themes. Most users find dark mode easier on the eyes in low-light environments.</p>
+
+<h2 id="help">Getting help</h2>
+
+<p>If something isn't working, try these in order:</p>
+
+<ul>
+  <li>The <a href="/faq/troubleshooting">troubleshooting FAQ</a> covers the most common symptoms (won't start, GPU not detected, work units failing, idle client).</li>
+  <li>The <a href="/support">support page</a> links every channel below in one place.</li>
+  <li>The <a href="https://foldingforum.org/" rel="noopener" target="_blank">Folding Forum</a> is best for detailed write-ups that need back-and-forth.</li>
+  <li>The <a href="https://discord.com/invite/foldingathome" rel="noopener" target="_blank">Discord</a> is best for real-time questions.</li>
+  <li>Existing client bugs are tracked at <a href="https://github.com/FoldingAtHome/fah-client-bastet/issues" rel="noopener" target="_blank">fah-client-bastet/issues</a> and <a href="https://github.com/FoldingAtHome/fah-web-client-bastet/issues" rel="noopener" target="_blank">fah-web-client-bastet/issues</a> — search before filing.</li>
+</ul>
+
+<h2 id="open-source">Open-source contribution</h2>
+
+<p>The v8 client is open source. Anyone can help improve it: report issues, suggest features, or contribute code via the GitHub repositories:</p>
+
+<ul>
+  <li><a href="https://github.com/FoldingAtHome/fah-client-bastet" rel="noopener" target="_blank">github.com/FoldingAtHome/fah-client-bastet</a> (backend)</li>
+  <li><a href="https://github.com/FoldingAtHome/fah-web-client-bastet" rel="noopener" target="_blank">github.com/FoldingAtHome/fah-web-client-bastet</a> (Web Control)</li>
+</ul>
+
+<p>Before filing a new issue, please make sure you've researched the problem and that it isn't already tracked. We get more feature requests than we can implement, so ask for help on the forum or Discord before opening a feature-request issue.</p>
+
+<p>Pull requests are welcome — smaller, focused PRs with clean, well-tested code are much more likely to be accepted than large bundles of changes. See also our broader <a href="/about/open-source">open-source page</a> for the supporting libraries (GROMACS, OpenMM, MSMBuilder, Copernicus) the project builds on.</p>
+

@@ -1,0 +1,58 @@
+<p>Day-to-day operation of the Folding@home client. For points, identity, and deadlines see <a href="/faq/stats">Points, stats &amp; passkey</a>; for first-time install see <a href="/faq/getting-started">getting started</a>.</p>
+
+<h2>How does the client get work?</h2>
+
+<p>The client talks to a central assignment server. When you start folding (or finish a work unit), it requests a new WU sized for your hardware. The WU downloads, runs, and uploads results when it finishes. The next WU then downloads automatically. You don't have to do anything between WUs.</p>
+
+<h2>Can the client work on more than one WU at a time?</h2>
+
+<p>Yes. The v8 client manages your compute resources (CPUs and GPUs) as a pool: it can run a separate WU on each device, or pool multiple devices together to run a single larger WU faster — whichever way produces results most efficiently for the science. You don't configure this directly; the client allocates work automatically based on the resources you've made available in <strong>Machine Settings &rarr; Resource Usage</strong>.</p>
+
+<h2>How does GPU folding work?</h2>
+
+<p>If your machine has a supported GPU, the client uses it by default — both NVIDIA (CUDA) and AMD (ROCm/OpenCL) GPUs are supported. For many of our projects the GPU runs 20–30× faster than a CPU on the same simulation, and modern projects assume GPU availability.</p>
+
+<p>If the client isn't picking up your GPU, see <a href="/faq/troubleshooting">troubleshooting</a>.</p>
+
+<h2>How do I pause or schedule folding?</h2>
+
+<p>The big Fold / Pause buttons in Web Control start and stop folding immediately on all your machines. The simulation engine checkpoints periodically, so restarts and reboots don't throw away progress — you may lose at most a few minutes of work per restart.</p>
+
+<p>For more nuanced control, the <strong>Scheduling</strong> section in Machine Settings has three toggles:</p>
+
+<ul>
+  <li><strong>Only When Idle</strong> — only fold when nobody is using the keyboard or mouse.</li>
+  <li><strong>While On Battery</strong> — allow folding on laptops that aren't plugged in (off by default to spare the battery).</li>
+  <li><strong>Keep Awake</strong> — prevent the machine from going to sleep so folding can keep running.</li>
+</ul>
+
+<p>If you have to shut the machine down for an extended period (e.g. travel), pause first to avoid leaving an in-progress WU stale on disk for so long that it expires before you can resume.</p>
+
+<h2>How much of my machine does folding use?</h2>
+
+<p>You set this directly in <strong>Machine Settings &rarr; Resource Usage</strong>:</p>
+
+<ul>
+  <li>The <strong>CPUs</strong> slider chooses how many CPU cores Folding@home uses. Setting it too low may cause WUs the client has already accepted to stop running — pause first if you want to drop the count significantly.</li>
+  <li>The <strong>GPUs</strong> section lists every supported GPU the client found on your machine. Each one has a checkbox. GPU folding is usually much more efficient than CPU folding and earns more points, but you can disable any GPU if folding is interfering with how you use the machine.</li>
+</ul>
+
+<p>The actual simulation runs in a child process called a <em>fahcore</em>. Adjusting the priority of the client process itself does nothing — control comes from the resource sliders, not from OS priority knobs.</p>
+
+<h2>I keep getting work units from the same project. Is that wrong?</h2>
+
+<p>No. Each WU is identified by four numbers in the format <code>project (run, clone, generation)</code>. A project may need thousands of WUs to fully characterize a protein, and each WU you complete generates new data even if it's labelled with the same project number. Unlike some volunteer-computing projects, F@h never sends the same WU to two donors as a redundant check — getting "the same protein" really does mean a different WU on the same study.</p>
+
+
+<h2>Can I manage multiple machines from one place?</h2>
+
+<p>If you fold on more than one machine, register a Folding@home Account and they'll all roll up under a single login. From any browser, signed into the account, you can see the status of every connected machine, pause or resume folding on any of them, change resource settings, and view logs — including from your phone. Headless machines (e.g. a home server with no monitor) connect via an account token written into <code>/etc/fah-client/config.xml</code>. The account is optional; everything still works without one.</p>
+
+<h2>How can I tell my contributions are being counted?</h2>
+
+<p>The stats pages (linked from the client and at <a href="https://stats.foldingathome.org/" rel="noopener" target="_blank">stats.foldingathome.org</a>) update hourly. Your username will appear after your first completed WU. The client's own UI also shows total WUs completed and current points per day. If you're using a passkey, all your machines roll up to the same donor record — see <a href="/faq/stats">Points, stats &amp; passkey</a>.</p>
+
+<h2>Why should I update to the latest client?</h2>
+
+<p>New versions ship with bug fixes, broader hardware support, performance improvements, and updated science cores. Older clients may also lose access to newer projects as the assignment server stops sending them WUs it can't run. Keeping the client current also keeps the security-relevant components (TLS, system libraries) up to date.</p>
+

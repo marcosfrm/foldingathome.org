@@ -1,0 +1,45 @@
+<p>The expectations for participating in Folding@home: where it's appropriate to run the client, what it does to your machine, what we collect, and how to compete fairly on the points leaderboards.</p>
+
+<h2>Where can I run Folding@home?</h2>
+
+<p>Run Folding@home only on computers <strong>you own</strong> or for which you have the owner's explicit permission. Many companies, universities, and schools prohibit running volunteer-computing software on their machines — check your IT policy before installing on a work or shared computer. Installing F@h on someone else's machine without consent, or bundling it into another software package without the user's knowledge, violates the EULA.</p>
+
+<h2>What does the client do to my computer?</h2>
+
+<p>While folding, the client uses your CPU and (if available) GPU compute cycles, a small amount of disk space for work units in progress, and network bandwidth to download new WUs and upload results. By default it runs at idle (lowest) priority so it gets out of the way of other software. You can adjust how much it uses, or pause it entirely, at any time from the client's web UI.</p>
+
+<p><strong>Heat and power.</strong> The client puts sustained load on your CPU and GPU, which means more heat and higher power draw than at idle. On a desktop with adequate cooling, this is normally fine. On a thin laptop or in an unventilated enclosure, expect higher temperatures — if the machine throttles or overheats, pause folding or configure the client to use fewer resources.</p>
+
+<p><strong>Integrity of the software itself.</strong> The Windows and macOS installers are digitally signed. The Linux packages are not signed — only download them from foldingathome.org. Server infrastructure is firewalled and locked down. As with any software you install from the internet, please download the client only from <a href="/download">our download page</a> or our official package repositories — not from third-party mirrors.</p>
+
+<h2>What data is collected, and what's made public?</h2>
+
+<p>Your account is identified by a username you pick and (optionally) a team number. These are publicly visible on the stats leaderboards along with totals of work you've completed.</p>
+
+<p>The client reports your hardware characteristics — processor type, memory, GPU model — to the assignment server so it can give you appropriate work units. Aggregate hardware breakdowns appear on public stats pages. <strong>Nothing that reveals your computer's network location</strong> (IP address, hostname, geographic info) is published.</p>
+
+<p>If you choose to use an email address as your username, only the part before <code>@</code> appears in stats. The full address is not displayed and is not shared with third parties. Passkeys (see <a href="/faq/stats">Points, stats &amp; passkey</a>) are kept private to your account.</p>
+
+<p>If you want to participate without any identifying name on the leaderboards, set your username to <code>anonymous</code>.</p>
+
+<h2>What are the fair-play rules?</h2>
+
+<p>Folding@home is fundamentally a scientific project, but it's also a community where many donors enjoy competing on points. To keep the points system meaningful:</p>
+
+<ul>
+  <li><strong>Don't manipulate the assignment server</strong> — using undocumented switches, dumping WUs to fish for higher-paying ones, or forcing your client onto work it wasn't natively assigned all hurt the science.</li>
+  <li><strong>Don't dump work units except for legitimate reasons.</strong> WU or client instability, or genuine inability to meet the deadline, are valid; chasing higher PPD is not. A dumped WU has to be reassigned and re-run, which slows the project down.</li>
+  <li><strong>Don't intentionally delay completion or upload</strong> to game the quick-return bonus or otherwise warp your stats.</li>
+  <li><strong>Don't redistribute modified clients that misrepresent themselves to the assignment server, and don't bundle the client into other installers without the user's knowledge or consent.</strong> The client itself is open source — modifying it, contributing patches, or running your own build are all welcome (see <a href="/about/open-source">open source</a>). What's prohibited is using a modified or repackaged client to falsify work or sneak F@h onto someone else's machine.</li>
+</ul>
+
+<p>The vast majority of donors never need to think about any of this — just install the client, leave it running, and your contribution counts normally.</p>
+
+<h2>Is overclocking OK?</h2>
+
+<p>We neither endorse nor prohibit overclocking, but be aware: folding is one of the most demanding sustained loads your hardware will see, harder than most popular stability tests. An overclock that's stable for gaming is often <em>not</em> stable for 24/7 folding, and the symptom you'll see is repeated WU failures (EUE). If you're getting EUEs after pushing clocks, back off the overclock before suspecting your hardware. See <a href="/faq/troubleshooting">troubleshooting</a>.</p>
+
+<h2>Who is liable if something goes wrong?</h2>
+
+<p>Folding@home and the institutions involved with the project assume no liability for damage to your computer, loss of data, or any other event or condition that may occur as a result of participating in Folding@home.</p>
+

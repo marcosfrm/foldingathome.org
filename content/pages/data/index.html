@@ -1,0 +1,28 @@
+<p>Folding@home produces molecular-dynamics trajectories at a scale no single lab could afford to generate on its own — built up over years from millions of donors contributing their idle compute. Releasing that data openly is, to us, the obvious response: the simulations were paid for by the community, and they are far more valuable when other researchers can build on them.</p>
+<p>Everything on this page is openly accessible. No application, no fee, no signup. Download the trajectories, build new Markov state models, train ML methods on the conformational ensembles, validate experimental hypotheses, or look for the cryptic drug-binding pockets that static structures hide. Please cite the linked papers when you publish.</p>
+
+<h2>Markov state models of SARS-CoV-2 proteins</h2>
+<p><em>Bowman Lab, Washington University in St. Louis</em></p>
+<p>During the COVID-19 pandemic, Folding@home donors ran simulations targeted at the molecular machinery of SARS-CoV-2: how the spike opens, how viral proteases work, where cryptic drug-binding pockets sit across the proteome. This dataset is the processed MSMs from that work. See the manuscript <a href="https://www.biorxiv.org/content/10.1101/2020.06.27.175430v3">"SARS-CoV-2 simulations go exascale to capture spike opening and reveal cryptic pockets across the proteome"</a> for details and headline results.</p>
+<p>Systems covered: SARS-CoV-2 spike, NSP3, NSP5, NSP7, NSP8, NSP9, NSP10, NSP12, NSP13, NSP14, NSP15, NSP16, nucleoprotein RBD, nucleoprotein dimerization domain; SARS-CoV-1 spike; HCoV-NL63 spike; human ACE2, IL-6, and IL-6R.</p>
+<p><a class="btn" href="https://osf.io/fs2yv/">Access dataset on OSF</a></p>
+<figure class="aligncenter" style="max-width: 600px">
+  <img src="/assets/7c872827-3382-4bb8-979a-6f81f1f277ce" alt="Free-energy landscapes from Markov state models of SARS-CoV-2 proteins, including the spike opening transition" />
+  <figcaption>Conformational landscapes from the SARS-CoV-2 MSM dataset. (Bowman Lab, 2020)</figcaption>
+</figure>
+
+<h2>SARS-CoV-2 raw simulation data</h2>
+<p><em>Bowman Lab, Washington University in St. Louis</em></p>
+<p>The raw trajectories underlying the processed MSMs above. These cover SARS-CoV-2 and the associated host proteins, with an emphasis on discovering cryptic drug-binding pockets. Documentation and access patterns are catalogued at the <a href="https://covid.molssi.org//simulations/#foldinghome-simulations-of-the-sars-cov-2-spike-protein-spike-spike-binding">MolSSI COVID Hub</a>.</p>
+<p><a class="btn" href="https://registry.opendata.aws/foldingathome-covid19/">Access dataset on AWS Open Data Registry</a></p>
+
+<h2>Myosin motor Markov state models</h2>
+<p><em>Bowman Lab, Washington University in St. Louis</em></p>
+<p>Myosin motors carry out an extraordinary range of biological functions despite sharing a common mechanochemical cycle. This dataset models the conformational distributions of twelve myosin motor domains, built from roughly two milliseconds of all-atom, explicit-solvent molecular dynamics — enough trajectory data to resolve how each motor tunes the thermodynamics and kinetics of its cycle.</p>
+<p>Published as <a href="https://elifesciences.org/articles/55132">Porter et al., "Conformational distributions of isolated myosin motor domains encode their mechanochemical properties," <em>eLife</em> 2020</a>.</p>
+<p><a class="btn" href="https://osf.io/54g7p/">Access dataset on OSF</a></p>
+<figure class="aligncenter" style="max-width: 600px">
+  <img src="/assets/40796c9a-c309-42c3-a789-15ee060c73d4" alt="Conformational distributions for twelve myosin motor domains, as Markov state model landscapes" />
+  <figcaption>Conformational ensembles for the twelve myosin motor domains. (Porter et al., <em>eLife</em> 2020, figure 3)</figcaption>
+</figure>
+

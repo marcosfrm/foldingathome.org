@@ -1,0 +1,71 @@
+<p>This page is about proteins, the folding that gives them their shape, the diseases that result when folding fails, and how Folding@home turns millions of donated computers into a single research instrument to study the whole process. Some of it is technical, but the goal is a clear picture of what your computer is doing and why it helps.</p>
+<h3>How a chain becomes a machine</h3>
+<p>Proteins are long chain molecules — necklaces of amino acids that drive every biochemical reaction in your body. They make up your bones, muscles, hair, skin, and blood vessels. They are the antibodies your immune system uses to recognize invaders. To do any of that, each one has to take on a specific 3D shape.</p>
+<figure><img src="/assets/1d0e7c55-2401-4b41-865b-0f2323ef3848" alt="The primary structure of a protein is a chain of amino acids">
+<figcaption>The primary structure of a protein — a chain of amino acids. (Wikimedia Commons / National Human Genome Research Institute, public domain)</figcaption>
+</figure>
+<p>Knowing the amino acid sequence alone is not enough. The protein has to assemble itself — to <em>fold</em> — into that functional shape, fast. The human genome gives us the sequence; what proteins actually <em>do</em> depends on the fold.</p>
+<h3>Why proteins fold</h3>
+<p>Proteins fold to reach their most "comfortable" position — the lowest-energy arrangement of atoms in their environment. Many forces drive this: hydrophobic regions try to hide from water in the protein's interior; hydrogen bonds form between specific atoms; charges attract or repel. The final shape is the one that minimizes the total tension.</p>
+<figure class="aligncenter" style="max-width: 400px;"><img src="/assets/682737f3-8a2b-41f2-af3c-26671eb6228a" alt="Protein folding energy landscape, a funnel narrowing toward the native state">
+<figcaption>The protein folding energy landscape. The unfolded protein explores many shapes near the top; as the protein folds, the funnel walls guide it toward the lowest-energy native state at the bottom. (Wikimedia Commons / Thomas Splettstoesser, CC BY-SA 3.0)</figcaption>
+</figure>
+<p>One way to picture it: imagine a beach ball bouncing down the side of a steep mountain. The ball bounces many times as it descends, eventually stopping somewhere. Throw it down again and the path varies; if you repeat the throw thousands of times, you start to see a pattern. Most of the time the ball ends up at the very bottom. Once in a while it lands in a side depression and gets stuck — that's <em>misfolding</em>.</p>
+<p>It's also a bit like parallel-parking a car on a crowded street. You usually need several adjustments to get into the space. Sometimes you back out and try again. A protein does the same. Watch a hundred similar parking attempts and you start to understand which moves work and which don't.</p>
+<p>What makes Folding@home different from many other approaches is that we don't just want the parked car — we want the whole sequence of moves. The "how did we get here?" is where the disease answers live, and where new treatments can be designed to nudge the process in a better direction.</p>
+<h3>What happens when proteins misfold</h3>
+<p>A protein that folds incorrectly can stick to other misfolded copies and form ordered <strong>aggregates</strong> — clumps that grow into fibrils. Once aggregation gets started, more copies pile on, and the clump propagates.</p>
+<p>In the brain these aggregates show up as the plaques and tangles of <strong>Alzheimer's disease</strong>, the toxic protein clumps of <strong>Huntington's</strong> and <strong>Parkinson's</strong>, and the fibrils of <strong>prion diseases</strong> like BSE. Cystic fibrosis, an inherited form of emphysema, and many cancers also trace back to misfolding.</p>
+<figure><img src="/assets/05caa3d8-8acd-4b6b-9790-5501f88a49e4" alt="Amyloid plaque formation between neurons in Alzheimer's disease">
+<figcaption>Amyloid β plaques accumulating outside neurons — a hallmark of Alzheimer's disease. (Wikimedia Commons / National Institute on Aging, public domain)</figcaption>
+</figure>
+<h3>Why simulating this is hard</h3>
+<p>Real protein folding happens on timescales from microseconds to seconds. Computers simulate molecular motion at the femtosecond scale (10⁻&sup1;⁵ seconds), and each step is significant work. To watch a single protein fold once, you'd need trillions of steps. No single computer can do it in a reasonable time.</p>
+<p>Before 2010, even the fastest molecular dynamics simulations could only reach <strong>nanosecond to microsecond</strong> timescales — orders of magnitude short of where real folding happens.</p>
+<figure class="aligncenter" style="max-width: 600px;"><img src="/assets/05024368-fc7d-4799-baa0-ef4f3ba4135a" alt="FAHViewer rendering of the SARS-CoV-2 main protease being simulated atom by atom">
+<figcaption>FAHViewer rendering of the SARS-CoV-2 main protease being simulated atom-by-atom by a Folding@home donor computer. Every spot is an atom; every frame is a few femtoseconds of motion. (Wikimedia Commons / Lomkimarsh, CC BY-SA 4.0)</figcaption>
+</figure>
+<p>Folding@home gets around this by running many short trajectories in parallel and stitching them back together statistically. The technique that makes the stitching mathematically rigorous is the <strong>Markov state model</strong>.</p>
+<h3>Markov state models</h3>
+<p>Because folding is statistical, a single trajectory only tells you one possible story. A Markov state model (MSM) is a map of all the distinct shapes a protein explores — the <strong>states</strong> — and the rates at which it transitions between them. Given enough trajectories, the MSM describes the protein's entire conformational landscape and predicts how it folds, breathes, and sometimes misfolds.</p>
+<p>The crucial property: MSMs let us aggregate <strong>short, independent simulations</strong> instead of needing one impossibly long one. That's exactly the kind of work a distributed network of donor computers can do efficiently.</p>
+<figure class="aligncenter"><img src="/assets/fdd054d2-d8aa-490a-9fcc-4178e4dab66c" alt="Markov state model of NTL9 folding">
+<figcaption>MSM showing 14 of 2000 macrostates for the NTL9 protein. Larger states are more populated; thicker arrows are more likely transitions. Unfolded states in red, native in green. <a href="http://www.ncbi.nlm.nih.gov/pubmed/20070076">(Voelz et al.)</a></figcaption>
+</figure>
+<figure class="aligncenter"><img src="/assets/2c79f13c-cca4-4794-aa86-cd7d5826eb74" alt="Markov state model of ACBP folding">
+<figcaption>MSM for the ACBP protein, illustrating some of the primary transitions. <a href="http://pubs.acs.org/doi/abs/10.1021/ja302528z">(Voelz et al.)</a></figcaption>
+</figure>
+<p>The Pande group's <strong>MSMBuilder</strong> — developed with Drs. Xuhui Huang and Gregory Bowman — is the open-source software that builds and analyzes these models. Released in 2009, it's been used in dozens of published studies of protein folding, function, and ligand binding. The work earned Bowman the American Chemical Society's <strong>Thomas Kuhn Paradigm Shift Award</strong> in 2010.</p>
+<h3>Adaptive sampling</h3>
+<p>Once we know that MSMs work, a natural question follows: which simulations are worth running next? You don't want to waste compute cycles re-exploring well-known parts of the landscape; you want to push into the parts you don't yet understand.</p>
+<p>Picture exploring a maze with a GPS. The blind strategy is to wander aimlessly until you're tired, then look at where you've been. The smart strategy is to watch the GPS as you go: build the map incrementally, notice when you're stuck in one corner, deliberately steer toward unexplored regions.</p>
+<p><strong>Adaptive sampling</strong> is the smart strategy applied to MSMs. Instead of running a giant batch of simulations and analyzing afterward, the model gets built on the fly, and the running model tells the next round of simulations where to focus. The result: dramatically more useful work per donated CPU hour.</p>
+<h3>Project, Run, Clone, Generation — what your computer does</h3>
+<p>When a researcher proposes a target, the simulation gets organized into a hierarchy you'll see in your Folding@home client.</p>
+<ul>
+<li><strong>Project</strong> — the protein under study.</li>
+<li><strong>Run</strong> — a simulation started from one specific initial conformation.</li>
+<li><strong>Clone</strong> — within a run, multiple trajectories from the same conformation but with different initial atomic velocities, so they explore different paths.</li>
+<li><strong>Generation</strong> — a clone's trajectory is too long for one computer to finish, so it's split into pieces handed sequentially across donor machines. Generation 0 finishes; generation 1 picks up where it left off; and so on.</li>
+</ul>
+<p>That four-number tag — Project, Run, Clone, Generation, or "PRCG" — uniquely identifies the slice of work your computer is contributing. Many clones and many runs are processed in parallel; only the generations are serial. That's why work units have deadlines, and why your computer's speed matters: a late return holds up the next generation.</p>
+<h3>Does this approach actually work?</h3>
+<p>In one comparison, we put MSMs head-to-head against the <strong>Anton</strong> supercomputer — a purpose-built molecular dynamics machine. Anton produced long, continuous trajectories of folding events. We chopped the same protein into short trajectories and built an MSM from them. Our approach reproduced Anton's findings — and revealed a folding pathway Anton's traditional analysis had missed.</p>
+<figure class="aligncenter" style="max-width: 280px;"><img src="/assets/ad949ee2-e272-4fdf-ba9e-41626b4141a6" alt="Cartoon ribbon rendering of the NTL9 protein, PDB structure 1cqu">
+<figcaption>NTL9 — a 39-residue protein that folds on the millisecond timescale. (Wikimedia Commons / EBI MSD, public domain)</figcaption>
+</figure>
+<p>In a separate landmark result, Folding@home simulated the slow-folding <strong>NTL9 protein out to 1.52 milliseconds</strong> — a thousand times longer than what was previously achievable, and the first all-atom simulation to reach the timescale where this protein actually folds in nature.</p>
+<h3>The results</h3>
+<p><strong>First exaflop computer in history.</strong> During the COVID-19 pandemic in March and April 2020, the Folding@home donor network passed <strong>2.4 exaflops</strong> — the first computing system of any kind to cross the exaflop threshold, briefly faster than the world's top supercomputers <em>combined</em>.</p>
+<p><strong>Over 200 peer-reviewed papers</strong> across protein folding, cancer, neurological disease, viral targets, and computational methodology. Results have appeared in <em>Cell</em>, <em>Nature</em>, <em>JAMA</em>, <em>PNAS</em>, <em>JACS</em>, and the major specialty journals.</p>
+<p><strong>Open-source methods released to the wider field.</strong> MSMBuilder (2009) and <strong>Copernicus</strong> (2011) are both open source and used by labs that have no connection to Folding@home — the techniques developed here for distributed folding are now general infrastructure for molecular dynamics on clusters and supercomputers.</p>
+<h3>Where Folding@home came from</h3>
+<figure class="alignleft" style="max-width: 220px;"><img src="/assets/3094d956-b03e-4a62-a837-6b4eb1f5b12e" alt="Portrait of Vijay Pande, founder of Folding@home">
+<figcaption>Vijay Pande, who founded Folding@home at Stanford in 2000. (Wikimedia Commons / Adriana Klas, CC BY 4.0)</figcaption>
+</figure>
+<figure class="alignright" style="max-width: 220px;"><img src="/assets/985f34c5-5d12-4f1d-8b8b-60803036a18f" alt="Portrait of Greg Bowman, director of Folding@home">
+<figcaption>Greg Bowman, current director of Folding@home.</figcaption>
+</figure>
+<p>Folding@home was launched by <strong>Vijay Pande</strong> at Stanford University on October 1, 2000. The original idea — that statistical aggregation of thousands of short donor-computer simulations could outperform single long runs on dedicated hardware — turned out to be exactly right, and grew into one of the world's largest computing efforts.</p>
+<p>After fifteen years leading the project, Pande moved into venture capital, and <strong>Greg Bowman</strong> — his former Ph.D. student — took over. Bowman moved the lab to Washington University in St. Louis, and then to the University of Pennsylvania, where he leads Folding@home today. <a href="/about/gregory-bowman">More about Greg &rarr;</a></p>
+<p class="muted">This explainer is adapted from earlier writing by TJ Lane, Gregory Bowman, Robert McGibbon, Christian Schwantes, Vijay Pande, and Bruce Borden.</p>

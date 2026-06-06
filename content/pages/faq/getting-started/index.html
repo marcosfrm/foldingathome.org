@@ -1,0 +1,40 @@
+<p>The Folding@home client runs on Windows, macOS, and Linux. It's free, takes a few minutes to set up, and starts contributing to active research the first time it gets a work unit.</p>
+<h2>How do I Install?</h2>
+<p>Pick your platform on the <a href="/download">download page</a>. The installer or package handles everything — you don't need to compile anything, and you don't need to know anything about molecular dynamics.</p>
+<ul>
+<li><strong>Windows.</strong>
+    <ul>
+      <li>Download the Windows installer from the download page.</li>
+      <li>Run the installer.</li>
+      <li>Choose whether to install for your user only or for all users — "for me only" is fine on a personal desktop.</li>
+      <li>If Windows SmartScreen prompts, approve it.</li>
+      <li>The client runs in the background once the install completes.</li>
+    </ul>
+  </li>
+<li><strong>macOS.</strong>
+    <ul>
+      <li>Download the installer package.</li>
+      <li>Open it in Installer.</li>
+      <li>Enter your administrator name and password when prompted.</li>
+      <li>The client runs in the background once the install completes.</li>
+      <li>Open the Web Control URL shown on the installer's last panel in a browser other than Safari — Safari blocks the local connection Web Control needs.</li>
+    </ul>
+  </li>
+<li><strong>Linux.</strong> Install the single <code>fah-client</code> package — <code>.deb</code> for Debian/Ubuntu, <code>.rpm</code> for Fedora/RHEL, or build from source for other distros. The client runs as a background service after install.</li>
+</ul>
+<p>You don't need administrator privileges to <em>use</em> the client — only to install it. Once installed, any user account can fold.</p>
+<h2>What Happens  on the First run?</h2>
+<p>The Folding@home control panel runs in your browser. Open <a href="https://app.foldingathome.org" target="_blank" rel="noopener">app.foldingathome.org</a> (or the version-specific Web Control link from the <a href="/download">download page</a>) and it will connect to the client running on your computer. The first time, you'll be asked to set:</p>
+<ul>
+<li><strong>Username.</strong> Whatever name you want to appear on the public stats leaderboards. See <a href="/faq/stats">Points, stats &amp; passkey</a> for the rules (no spaces, no <code>#</code>, etc.) and how to pick something that isn't already taken.</li>
+<li><strong>Team number.</strong> Optional. If a friend or community got you to install, they probably have a team number to share. Leave it as zero (no team) if you're not joining one.</li>
+<li><strong>Passkey.</strong> Optional but recommended — required to qualify for the Quick Return Bonus. <a href="/faq/stats">Details and how to get one</a>.</li>
+</ul>
+<p>Once configured, the client connects to the Folding@home assignment server and downloads its first work unit. The first WU usually starts running within a minute or two.</p>
+<h2>Should I Create a Folding@home Account?</h2>
+<p>If you fold on more than one machine — or want to manage your client from a phone or another computer — register a Folding@home Account from Web Control. An account lets you see and control every machine you've connected, from any browser. Registration needs an email and a passphrase (which is <em>not</em> the same as a passkey — see <a href="/faq/stats">Points, stats &amp; passkey</a> for the difference). The account is optional; everything works without one.</p>
+<h2>What happens next?</h2>
+<p>The client runs in the background. You can keep using your machine normally; folding uses idle cycles by default. There's no further interaction required — results upload automatically when a WU finishes, and the next WU downloads automatically after that.</p>
+<p>If you want to keep an eye on what your machine is doing, the client's web UI shows current progress, points per day (PPD), the project ID of what you're folding, and a log view. You can pause, resume, change the CPU/GPU folding split, or reconfigure your identity at any time from the same UI.</p>
+<h2>What if something goes wrong?</h2>
+<p>If the install fails or the client won't start after install, see <a href="/faq/troubleshooting">troubleshooting</a>. The most common first-run issues are permission prompts (Windows SmartScreen, macOS Gatekeeper) which you can approve once and won't see again.</p>

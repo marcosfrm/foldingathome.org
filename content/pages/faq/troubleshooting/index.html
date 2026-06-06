@@ -1,0 +1,93 @@
+<p>When the client misbehaves, the answer is usually in the log. This page covers the most common failure modes and what to check first. For anything not listed here, the <a href="https://foldingforum.org/" rel="noopener" target="_blank">forum</a> and <a href="https://discord.com/invite/foldingathome" rel="noopener" target="_blank">Discord</a> have donors and developers actively answering questions.</p>
+
+<h2>Why won't the client start?</h2>
+
+<p>The most common causes:</p>
+
+<ul>
+  <li><strong>It's already running.</strong> A previous session may still be alive in the background. On Windows check Task Manager for <code>FAHClient</code>; on macOS and Linux look for it in your process list. Kill any orphaned instances before launching a new one.</li>
+  <li><strong>Port already in use.</strong> The client listens on a local port so Web Control can connect to it from your browser. If another program already has that port, the client will exit instead of starting. Change the port in the configuration or stop the conflicting program.</li>
+  <li><strong>Stale work directory.</strong> A corrupted in-progress WU can prevent startup. As a last resort, stop the client and delete the work directory's contents (you'll lose progress on the current WU but the client will fetch a fresh one).</li>
+</ul>
+
+
+<h2>Why can't Web Control find my client?</h2>
+
+<p>Web Control is the page you see in your browser; the client is the background service doing the work. They talk to each other over a local connection. If Web Control says it can't find your client:</p>
+
+<ul>
+  <li><strong>Is the client actually running?</strong> Look for <code>fah-client</code> in your process list. Reinstall or restart the service if not.</li>
+  <li><strong>Same machine?</strong> Web Control connects to a client on the same machine your browser is on. Visiting Web Control from a different device won't see the client — sign into a Folding@home Account first if you want cross-device management.</li>
+  <li><strong>Browser blocking the local connection.</strong> Some browser extensions and strict cross-origin settings can interfere. Try a fresh browser profile with no extensions to rule this out.</li>
+</ul>
+
+<h2>Why isn't my GPU being used?</h2>
+
+<p>Folding@home requires functioning compute drivers on the GPU. Things to check, in order:</p>
+
+<ol>
+  <li><strong>Drivers.</strong> NVIDIA users need a recent CUDA-capable driver; AMD users need a recent ROCm-capable driver. The vendor's stock gaming driver usually includes the compute runtime, but older or stripped-down installs may not. Update to the latest official driver from the vendor.</li>
+  <li><strong>The GPU has to be visible to the OS.</strong> If it's listed in your OS device manager / <code>nvidia-smi</code> / <code>rocm-smi</code>, the client should see it too. If not, the issue is upstream.</li>
+  <li><strong>GPU folding has to be enabled in the client.</strong> Most installs detect GPUs automatically, but check your client's configuration to confirm the GPU isn't paused or disabled.</li>
+  <li><strong>The assignment server has to have GPU work to give you.</strong> Not all projects have GPU WUs available at all times. A few hours of idle GPU isn't unusual; days are.</li>
+  <li><strong>Laptops with hybrid graphics.</strong> An iGPU and dGPU sharing one machine sometimes causes detection trouble. Try forcing the dGPU as the default compute device in your OS / vendor control panel.</li>
+</ol>
+
+<h2>Why are my work units failing (EUE)?</h2>
+
+<p>An EUE (Early Unit End) is what the client reports when a WU exits with an error instead of completing. Occasional EUEs happen — some projects are still in beta and some hardware combinations expose obscure bugs. The pattern matters more than any single failure:</p>
+
+<ul>
+  <li><strong>One EUE every few weeks.</strong> Normal. The client will just fetch another WU.</li>
+  <li><strong>Repeated EUEs on the same WU.</strong> The WU itself is probably bad — the client will reassign after a few tries.</li>
+  <li><strong>EUEs on every WU.</strong> Something is wrong on your end. Most often: an overclocked CPU or GPU that's stable for gaming but not for sustained scientific computation. Back off the overclock and see if the EUEs stop. Failing memory, an overheating component, or a half-broken driver are next on the list.</li>
+</ul>
+
+<p>If you can reproduce a failure and have a log saved, the forum or Discord will help diagnose it.</p>
+
+<h2>Why is my client idle / showing "no work units available"?</h2>
+
+<p>The assignment server hands out WUs based on what science is currently running and what hardware can do it. If your client is sitting idle:</p>
+
+<ul>
+  <li>Check the client's log for messages from the assignment server — it usually says explicitly why a WU wasn't assigned.</li>
+  <li>Some projects are CPU-only or GPU-only. A pure-CPU client during a GPU-heavy week may get fewer WUs than usual, and vice versa.</li>
+  <li>Brief outages on the server side happen. If everyone is idle, check the <a href="https://foldingforum.org/" rel="noopener" target="_blank">forum</a> for an announcement.</li>
+</ul>
+
+<h2>How do I read the log?</h2>
+
+<p>Web Control has a built-in <strong>Log Viewer</strong> — in most cases this is the easiest way to see what the client is doing. It supports:</p>
+
+<ul>
+  <li><strong>Search</strong> — filter the log for lines matching a string.</li>
+  <li><strong>Errors</strong> / <strong>Warnings</strong> checkboxes — show only error- or warning-level messages.</li>
+  <li><strong>Follow</strong> — auto-scroll as new lines arrive.</li>
+</ul>
+
+<p>If you need to share log content for diagnosis, copy the last ~100 lines into a paste service and link to that. Don't screenshot the log — it's searchable text, and the lines just before the failure are almost always the useful ones.</p>
+
+<h2>Will folding slow my computer down or overheat it?</h2>
+
+<p><strong>Will it slow my computer down?</strong> By default the client tries to use idle cycles, not foreground capacity. You can keep using your machine while it folds; you may notice it during heavy game/render sessions if both want the same GPU.</p>
+
+<p><strong>Can I fold while gaming?</strong> Yes, but you'll usually want to pause GPU folding during the session so the GPU isn't fighting for memory and shader time. Use the client's pause control.</p>
+
+<p><strong>Power and heat.</strong> Folding pegs the CPU or GPU near full load. Your machine will run warmer and draw more electricity than at idle. On a desktop this is normally fine; on a thin laptop running 24/7 the cooling system isn't designed for it and you should expect reduced longevity. Run on a desktop if you can.</p>
+
+<h2>How do I uninstall?</h2>
+
+<p>Use the same mechanism you used to install:</p>
+
+<ul>
+  <li><strong>Windows:</strong> Settings → Apps → Folding@home → Uninstall.</li>
+  <li><strong>macOS:</strong> Folding@home installs via a <code>.pkg</code> rather than a draggable app bundle, so the Finder Trash route doesn't clean it up. Download and run the <a href="https://download.foldingathome.org/releases/public/fah-uninstaller/macos-12-universal/release/fah-uninstaller_0.1.7_all.pkg">macOS uninstaller package</a>.</li>
+  <li><strong>Linux:</strong> remove the <code>fah-client</code> package via your package manager (<code>sudo apt remove fah-client</code> on Debian/Ubuntu, <code>sudo dnf remove fah-client</code> on Fedora/RHEL).</li>
+</ul>
+
+<p>The work directory under the OS data folder may remain after uninstall — delete it manually if you want a fully clean removal.</p>
+
+<h2>Still stuck?</h2>
+
+<p>Bring the log. Almost every diagnosis hinges on what the client wrote just before the symptom. The <a href="https://foldingforum.org/" rel="noopener" target="_blank">forum</a> is best for detailed write-ups and <a href="https://discord.com/invite/foldingathome" rel="noopener" target="_blank">Discord</a> for live back-and-forth. Suspected client bugs go to <a href="https://github.com/FoldingAtHome/fah-client-bastet/issues" rel="noopener" target="_blank">fah-client-bastet/issues</a> (client bugs) or <a href="https://github.com/FoldingAtHome/fah-web-client-bastet/issues" rel="noopener" target="_blank">fah-web-client-bastet/issues</a> (Web Control bugs) — search both first; most reproducible bugs are already tracked.</p>
+

@@ -1,0 +1,174 @@
+<h2 id="introduction-to-v8-bastet-">Introduction to V8.4 (Bastet)</h2>
+
+<div><figure class="alignright"><img src="/assets/7b5f898c-b199-4295-bb0e-ef6c3477ce26" alt="Statue of the Ancient Egyptian Goddess Bastet" width="195" height="437"/><figcaption>Statue of the Ancient Egyptian Goddess Bastet</figcaption></figure></div>
+
+<p>We are excited to announce version 8.4 of the Folding@home software. V8 has been code named "<a rel="noreferrer noopener" href="https://en.wikipedia.org/wiki/Bastet" target="_blank">Bastet</a>" in reference to the Ancient Egyptian goddess who is associated with cats and protection from disease.</p>
+
+<p>V8 is a complete rewrite of the Folding@home client software designed to make using Folding@home easier, lay a foundation for new features and to encourage community participation in the software's continued development.</p>
+
+<h2>What's New in V8.4?</h2>
+
+<p>v8.4 mainly adds a lot of bug fixes and user interface improvements since v8.3.  Notable changes are the addition of the Work Unit history view, wide and compact display support and built in team management features.  See the <a href="https://github.com/FoldingAtHome/fah-client-bastet/blob/master/CHANGELOG.md">fah-client-bastet</a> and <a href="https://github.com/FoldingAtHome/fah-web-client-bastet/blob/master/CHANGELOG.md">fah-web-client-baset</a> change logs for more details.</p>
+
+<h2 id="what-s-new-in-v8-">Changes since v7</h2>
+
+<p>There are several important changes between v7 and v8 clients. First, there are now only two parts to the client software: the backend (<a rel="noreferrer noopener" href="https://github.com/FoldingAtHome/fah-client-bastet" target="_blank">fah-client-bastet</a>) which runs behind the scenes handling most of the logic of running Folding@home, and the frontend (<a rel="noreferrer noopener" href="https://github.com/FoldingAtHome/fah-web-client-bastet" target="_blank">fah-web-client-bastet</a>) Web Control which provides the user interface. The v8 backend is equivalent to <em>FAHClient</em> in v7. The v8 Web Control combines the features of the v7 <em>Web Control</em>, <em>FAHControl</em> and <em>FAHViewer</em>.</p>
+
+<p>Second, the concept of <em>folding slots</em> in v7 has changed in v8. Instead of configuring slots, you only have to tell Folding@home which compute resources (e.g. CPUs and GPUs) you would like it to use. It will then automatically allocate those resources in the most efficient way. This change both simplifies the setup of Folding@home and makes it possible for Folding@home to allocate multiple CPUs and GPUs to the same Work Unit.  By allocating more resources to a single WU, Folding@home can decrease simulation times and achieve scientific results more quickly.</p>
+
+<p>Finally, the advanced interface FAHControl from v7 is no longer a separate application. The new Web Control integrates all of the capabilities of FAHControl and more. V8's Web Control, in combination with a Folding@home account, makes it possible to monitor and control all of the machines you have contributing to F@H from any browser or smartphone no matter where those machines are located.</p>
+
+<h2 id="downloading-the-beta-software">Downloading the Software</h2>
+
+<p>The v8.4 client is the current public release.  You can download it from the main <a href="/download" data-type="URL" data-id="/download">download page</a>.</p>
+
+<h2 id="installation">Installation</h2>
+
+<p>The v8 client can run on Windows, macOS, Linux and ARM Linux.  The install procedure for v8 is essentially the same as for the v7 client, with the exception that on Linux you now only need to install the <em>fah-client</em> package.</p>
+
+<h2 id="v8-software-interface">Using the V8 Software without a Folding@home Account</h2>
+
+<p>The v8 Folding@home software is controlled via a web browser using Web Control. Web Control can be reached by navigating to <a href="https://v8-4.foldingathome.org/" target="_blank" rel="noreferrer noopener">https://v8-4.foldingathome.org/</a>. From this page your browser will attempt to connect to client software running on the same computer the browser is running on.</p>
+
+<div><figure class="aligncenter size-large"><img src="/assets/76578c88-f544-49ad-aaab-bf04647e1a14" alt=""/><figcaption>Web Control without local Client</figcaption></figure></div>
+
+<figure class="size-large"><img src="/assets/ed809bf7-f541-46ff-bc1b-5686c823b6cc" alt=""/><figcaption>Web Control connected to local Client</figcaption></figure>
+
+<p>If you have installed Folding@home v8 and it is running then the local machine should appear on the "Machines" page after a short delay.  Note, v8.4 Web Control cannot be used with v8.2 or older clients.</p>
+
+<h2>Using the v8 Software with a Folding@home Account</h2>
+
+<p>Creating and logging into your Folding@home account makes it possible to control and configure all your Folding machines from anywhere, including from your smartphone.</p>
+
+<figure class="size-large"><img src="/assets/121dfa1d-8da2-4851-a368-f76d92033576" alt=""/><figcaption>Folding@home Account Registration Screen</figcaption></figure>
+
+<p>To register for a Folding@home account, you must provide a valid email address and choose a passphrase.  Please note, <strong>a passkey is not the same as a passphrase</strong>.  You can use Web Control to generate a good passphrase for you by clicking the <span class="fa fa-refresh"></span> button.  It will choose four random words as your passphrase.  No numbers or special characters are required.  This is very secure and easy to remember.  To see the passphrase, click the <span class="fa fa-eye-slash"></span> button.  Otherwise, click the <span class="fa fa-copy"></span> button to copy the passphrase to the clipboard.</p>
+
+<p>If your local client is configured, your <strong>Username</strong>, <strong>Team</strong> and <strong>Passkey</strong> will auto fill.  These last three fields are not required.  After you click the <strong>Register</strong> button, an email will be sent to the address provided.  Clicking on the link in this email will activate your account.</p>
+
+<figure class="size-large"><img src="/assets/4863992a-cd07-4017-a923-52385cf02222" alt=""/><figcaption>Web Control Login Screen</figcaption></figure>
+
+<p>Once logged in you will be able to access your account settings by clicking the user icon in the top right and all the machines connected to your account will appear on the machines page.</p>
+
+<h2>Account Settings</h2>
+
+<figure class="size-large"><img src="/assets/6351552e-eae4-470f-a441-4687a6e22072" alt=""/><figcaption>Account Settings</figcaption></figure>
+
+<p>In the <strong>Account</strong> section you can set your <strong>Username</strong>, <strong>Team</strong> and <strong>Passkey</strong>. These settings affect how you receive Folding@home points. More information about these settings and the points system can be found in the <a href="/faq">FAQ</a>.</p>
+
+<p>Choose a <strong>Cause</strong> preference to tell Folding@home which cause you'd like to support the most. Folding@home will try to assign more projects supporting your preferred cause but it is not guaranteed that you will get only these projects.</p>
+
+<p><strong>Node</strong> and <strong>Token</strong> affect how your machines connect to your Folding@home account.  More information about these can be found below.</p>
+
+<p>For your changes to take effect, you must click the <img style="width: 100px;vertical-align:middle;" src="/assets/56852f9d-f5b6-4e9c-b4e5-9c4281645114" alt="Save"> button in the top right. Or click <img style="width: 100px;vertical-align:middle;" src="/assets/a38f8441-b66d-4dd1-864e-1168485d794c" alt="Cancel"> to discard unwanted changes.</p>
+
+<p>Use <strong>Machines</strong> section to rename machines or connect and disconnect them from your account.  These settings take affect immediately after the corresponding button is clicked.  Warning: disconnecting a machine will make it inaccessible from your account and it will have to be reconnected manually.</p>
+
+<h2>Connecting Machines to your Account</h2>
+
+<p>Folding machines can be connected to your account either automatically or manually.  When a v8 machine is running locally and it is not already connected to another Folding@home account, it will be automatically connected if you login to your account using a browser on the same machine.  So just install v8, login once to your account and you're good to go.  Manually connecting machines may be necessary if the local machine is already connected to another account.  You can change its connection using the link icon in the <strong>Account Settings</strong>.</p>
+
+<h2>Manually Connecting Machines</h2>
+
+<p>For machines without a graphical user interface, a.k.a. headless machines, you will need to connect manually using the current account token.  You can copy the account from your account settings using any browser.  Then pass the account token using the <strong>account-token</strong> configuration option in the <strong>config.xml</strong> configuration file and restarting the client.  You can also use the <strong>machine-name</strong> option to give the machine a recognizable display name.</p>
+
+<p>On Linux systems, edit the file <strong>/etc/fah-client/config.xml</strong>:</p>
+
+<pre><code>&lt;config&gt;
+  &lt;account-token v="&lt;your account token&gt;"/&gt;
+  &lt;machine-name v="&lt;a machine display name&gt;"/&gt;
+&lt;/config&gt;</code></pre>
+
+<p>After using the account token, it is recommended that you generate a new one.  This prevents others from adding machines to your account should they gain access to your account token.  Only the most recent account token can be used to add machines to your account, so keep it secret but change it in <strong>Account Settings</strong> after you're done connecting a new batch of machines.</p>
+
+<p>The account <strong>node</strong> will be set automatically to something like <strong>node1.foldingathome.org</strong>.  It is rather complicated but it is possible to run your own node.  See the <a href="https://github.com/FoldingAtHome/fah-node">fah-node project</a> for more information.</p>
+
+<h2>Machines Page</h2>
+
+<figure class="size-large"><img src="/assets/0866072a-2b98-4593-a388-e98d3e460b6b" alt=""/><figcaption>Web Control with Folding@home Account</figcaption></figure>
+
+<p>The machines page is the first screen you will encounter.  After connecting, it will display the status of your local F@H machine or all your account's machines if you are logged in.</p>
+
+<p>In the header are two large buttons, Fold and Pause.  Clicking Fold will start folding on all your machines.  If you are just getting started with F@H you may want to first configure your Folding user name and team.</p>
+
+<p>In the body of the page is a list of your machines and any active <strong>Work Units</strong>. Work Units or WUs are chunks of protein folding simulations. They represent the work assigned to your machines. Here you will find the status and progress for each WU. On the right are several buttons. These can be used to dump the WU or view it's details or 3D visualization. You should only dump WUs in exceptional situations.</p>
+
+<h2 id="client-settings">Machine Settings</h2>
+
+<figure class="size-large"><img src="/assets/38aefe83-86d6-4684-9a67-53811727a5a4" alt=""/><figcaption>Machine Settings</figcaption></figure>
+
+<p>Note: the machine settings page will include the machine's account settings if you are not logged in.  Otherwise, account settings are set globally via the account settings page.</p>
+
+<h3 id="project-settings">Scheduling</h3>
+
+<p>These settings affect when folding runs.  <strong>Only When Idle</strong> causes the machine to only fold when the machine is idle.  I.e. when no one is moving the mouse or typing on the keyboard.  When enabled, <strong>While On Battery</strong> allows folding to occur on machines like a laptop when they are not plugged in.  <strong>Keep Awake</strong> will cause Folding@home to prevent your machine from going to sleep and thus continue folding when not on battery.</p>
+
+<h3 id="resource-usage">Resource Usage</h3>
+
+<p>In this section, you can tell Folding@home how to use your compute resources.</p>
+
+<p>The <strong>CPUs</strong> slider can be used to set the number of CPU cores Folding@home uses. You can adjust this value at any time. Setting the value too low may cause some WUs to stop running.</p>
+
+<p>In the <strong>GPUs</strong> section you will find a list of the supported Graphics Processing Units available on your machine. GPU folding is the most efficient and usually earns much higher points. In some cases, folding on the GPU can slow your machine down too much. You can always disable GPU folding here. More information about GPU folding can be found in the <a href="/faq">FAQ</a>.</p>
+
+<h3>Advanced</h3>
+
+<figure class="size-large"><img src="/assets/2229baba-7ff4-41a4-8e6f-63a24f367605" alt=""/><figcaption>Machine Settings in Advanced Mode</figcaption></figure>
+
+<p>Some advanced settings can be unlocked by clicking the small lock icon in the bottom right of the machine settings screen.  Once advanced settings are unlocked, this icon disappears.  These settings are mainly used for testing Folding@home software and simulation projects.</p>
+
+<p>In the <strong>Advanced</strong> section you can enable <strong>Beta Projects</strong>.  This will allow your machine to be assigned projects which are in testing.  In some cases, this can result in earning less points.  A <strong>Project Key</strong> is used for restricting assignment to a particular project only.  Your machine will not be able to get any other project than the one that matches the key if this key is set to something other than zero.</p>
+
+<p><strong>Resource Groups</strong> can be used to split up your compute resources into multiple groups which each can have different settings.  This is usually used in combination with a <strong>Project Key</strong> to test a particular type of Folding project.  With resource groups it is possible to over-allocate your resources, which can lead to poor performance and could bog down your machine making it unusable.  <em>Experts only, use with caution.</em></p>
+
+<h2>Stats Page</h2>
+
+<figure class="size-large"><img src="/assets/ca99d51f-5eae-4fb9-ac4a-0e6d57404e25" alt=""/><figcaption>Stats Page</figcaption></figure>
+
+<p>The stats page shows you and your team's points and ranking.  You can also download award certificates commemorating your contribution milestones.</p>
+
+<h2>Projects and News Pages</h2>
+
+<figure class="columns-2"><ul><li><figure><img src="/assets/8607a700-496c-4536-9818-e5c124de59a3" alt="" data-id="16775" data-link="/guides/v8-4-client-guide-work-in-progress/screenshot-20241231-211926/"/></figure></li><li><figure><img src="/assets/ae459f5b-f155-4096-b7b8-96fc60ba4082" alt="" data-id="16776" data-full-url="/assets/ae459f5b-f155-4096-b7b8-96fc60ba4082" data-link="/guides/v8-4-client-guide-work-in-progress/screenshot-20241231-211929/"/></figure></li></ul><figcaption>Projects and News Pages</figcaption></figure>
+
+<p>The projects page shows information about the projects your machines are currently folding.  The page is empty if you are not actively folding.  On the news page you can see a list of recent Folding@home blog posts.</p>
+
+<h2 id="log-viewer">Log Viewer</h2>
+
+<figure class="size-large"><img src="/assets/5a38c10c-11d4-49a6-bdff-86de3107c3da" alt=""/><figcaption>Log View</figcaption></figure>
+
+<p>The <strong>Log Viewer</strong> allows you to view detailed technical information about the folding simulations running on your machines. Making sense of these logs requires expert knowledge of the Folding@home software. If you encounter a problem with F@H you may be asked to share the contents of this log file.</p>
+
+<p>The <strong>Search</strong> bar can be used to filter the log for matching lines. Checking the <strong>Errors</strong> or <strong>Warnings</strong> boxes will filter the log for error and warning messages. The <strong>Reset</strong> button resets the log filters to their defaults. When <strong>Follow</strong> is enabled the log file will automatically scroll down as new information becomes available.</p>
+
+<h2 id="3d-protein-viewer">3D Protein Viewer</h2>
+
+<figure class="size-large"><img src="/assets/5af7f113-8bb0-4521-a26e-5538d9c75fd3" alt=""/><figcaption>3D Protein Viewer</figcaption></figure>
+
+<div><div>
+<p>The protein viewer displays a 3D view of the protein you are simulating. The 3D view can be accessed by clicking on the <span class="fa fa-eye"></span> icon on the right side of each Work Unit's row on the machines page.  You can zoom with the mouse wheel and rotate the protein by moving the mouse while holding the left button down.</p>
+</div></div>
+
+<p>There are three different modes for viewing the protein. These can be changed by clicking on the <strong>1</strong>, <strong>2</strong> and <strong>3</strong> buttons. As the simulation progresses it will take snapshots of the protein. You can cycle through these snapshots or <strong>Frames</strong> by clicking the arrow buttons.  If no frames are yet available this screen will show <strong>0 of 0</strong> frames.</p>
+
+<h2>Dark Mode</h2>
+
+<figure class="size-large"><img src="/assets/082e0025-070f-429a-8665-c7b8681a2a68" alt=""/><figcaption>Dark Mode</figcaption></figure>
+
+<p>You can switch between light and dark modes in account settings in the <strong>Appearance</strong> settings.  Some people may find dark mode more visually pleasing and easier on the eyes in low light.</p>
+
+<h2 id="getting-help">Getting Help</h2>
+
+<p>If you need more help with Folding@home:</p>
+
+<ul><li>Visit the <a href="/support/">Support Page</a></li><li>Ask questions at <a href="https://foldingforum.org/" target="_blank" rel="noreferrer noopener">Folding Forum</a></li><li>Browse previously reported issues on GitHub at <a href="//github.com/FoldingAtHome/fah-client-bastet/issues" target="_blank" rel="noreferrer noopener">fah-client-bastet</a> or <a href="//github.com/FoldingAtHome/fah-web-client-bastet/issues" target="_blank" rel="noreferrer noopener">fah-web-client-bastet</a>.</li></ul>
+
+<h2 id="open-source-contribution">Open-Source Contribution</h2>
+
+<p>The v8 Folding@home client software is Open-Source. Anyone can get involved in improving Folding@home via our GitHub account. You can report issues, suggest new features or contribute code by visiting the v8 client's GitHub repositories:</p>
+
+<ul><li><a rel="noreferrer noopener" href="https://github.com/FoldingAtHome/fah-client-bastet" target="_blank">github.com/FoldingAtHome/fah-client-bastet</a></li><li><a href="https://github.com/FoldingAtHome/fah-web-client-bastet">github.com/FoldingAtHome/fah-web-client-bastet</a></li></ul>
+
+<p>Only submit new issues on GitHub if you've fully researched the problem, gathered all the relevant information and checked that the issue does not already exist. We get many requests for new features. We can only afford to implement some of them.  Ask for help before creating your first GitHub issue.</p>
+
+<p>You can submit your own changes to the Folding@home software via a GitHub Pull Request (PR). PRs are much more likely to be accepted if they are simple and the code is clean and well tested.</p>

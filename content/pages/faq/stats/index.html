@@ -1,0 +1,101 @@
+<p>Three things tie together to track your contribution: a <strong>username</strong> (and optional team), a <strong>passkey</strong> that proves the work is really yours, and the <strong>points</strong> system that scores the work you complete. This page covers all three.</p>
+
+<h2>How do my username and team work?</h2>
+
+<p>When you install Folding@home, you pick a username and optionally a team number. These appear on the public <a href="https://stats.foldingathome.org/" rel="noopener" target="_blank">stats leaderboards</a>.</p>
+
+<p><strong>Username rules.</strong> Stick to letters, numbers, and underscores. Don't use spaces; use <code>_</code> instead. Don't use <code>#</code>, <code>^</code>, <code>~</code>, or <code>|</code> — these are reserved. Usernames are case-sensitive: <code>Dave</code>, <code>dave</code>, and <code>dAVE</code> are different users. If you use an email address as your username, only the part before the <code>@</code> is shown on stats pages.</p>
+
+<p><strong>Anonymous folding.</strong> You can set the username to <code>anonymous</code> if you don't want a personal name on the leaderboards.</p>
+
+<p><strong>Teams.</strong> To join an existing team, enter its team number during setup. To start a new team, use the Create-a-Team page linked from the <a href="/statistics">stats page</a>. Multiple machines can fold under the same username and team — their points add together.</p>
+
+<p><strong>Changing your username.</strong> You can change it any time in your client's identity settings. Work units already returned stay credited to the old name; new ones credit the new name.</p>
+
+<h2>What is a passkey and why should I use one?</h2>
+
+<p><strong>Don't confuse a passkey with a passphrase.</strong> A <em>passphrase</em> is the password for your Folding@home Account (covered <a href="#folding-account">below</a>) — it lets you sign into Web Control. A <em>passkey</em> is the points-integrity token described here. They're different strings used for different purposes; the client and Web Control both make the distinction explicit.</p>
+
+<p>A passkey is a unique token that ties your work units to <em>you</em>, not just to anyone using your username. Without a passkey, two people picking the same username can't be distinguished — and if one of them cheats, both get penalized. With a passkey, only the actual offender is affected.</p>
+
+<p>The more important reason to use one: the <strong>Quick Return Bonus</strong> (QRB), described below, is only awarded to donors with a passkey.</p>
+
+<p><strong>Getting a passkey.</strong> Request one at <a href="https://apps.foldingathome.org/passkey/create" rel="noopener" target="_blank">apps.foldingathome.org/passkey/create</a>. The form asks for your username and email; the passkey is sent to that email rather than displayed on the page, so nobody else can claim a passkey in your name.</p>
+
+<p><strong>Entering it.</strong> Paste your passkey into the <strong>Username / Team / Passkey</strong> fields. With a Folding@home Account, these live in <em>Account Settings</em> and apply to every machine you've signed in. Without an account, set them in each machine's <em>Machine Settings</em>. Always copy-paste — never type a passkey by hand. Use the same passkey on every machine you fold on; that's how a single donor identity is built up across hardware.</p>
+
+<p><strong>Keep it private.</strong> Don't post your passkey on the forum, Discord, or anywhere public. The only places it should ever go are the client itself and Folding@home's own websites.</p>
+
+<p><strong>Lost it?</strong> Re-request a passkey from the same page using the same username and email — you'll get the same one back. If you've lost access to that email, request from a new email and you'll get a fresh passkey (and lose linkage to the old one).</p>
+
+<h2>How do points work?</h2>
+
+<p>Points reflect how much science your computer contributed. Each project is benchmarked on a reference machine; the base credit for a work unit is proportional to how long the reference machine takes to run it. Larger or more complex simulations are worth more.</p>
+
+<p>You won't see points immediately. Stats are updated hourly, on the hour, and your username only appears in the leaderboards after your <em>first</em> work unit is returned. A brand-new team appears right away.</p>
+
+<p><strong>Why points vary between work units.</strong> Different research projects involve different proteins and methods. Some study small fast-folding systems; others study large complexes. The benchmark machine evens out a lot of this, but variation between WUs and between donor machines is unavoidable — the goal is fairness across projects, not exact agreement with any one machine.</p>
+
+<h2>What is the Quick Return Bonus (QRB)?</h2>
+
+<p>Fast turnaround matters: many F@h projects iterate on results, so a WU returned in a day is more useful than the same WU returned in a week. The QRB, introduced in 2010, gives extra points for fast and reliable completion.</p>
+
+<p><strong>To qualify for the QRB you must:</strong></p>
+
+<ul>
+  <li>Use a passkey.</li>
+  <li>Have successfully returned at least 10 bonus-eligible work units.</li>
+  <li>Have an overall return rate of at least 80% on assigned WUs.</li>
+  <li>Return the WU before its timeout.</li>
+</ul>
+
+<p>Bonus points aren't awarded for partial returns.</p>
+
+<h2>How are points and PPD calculated?</h2>
+
+<p>For a returned work unit, total points are:</p>
+
+<p><code>final_points = base_points × max(1, sqrt(k × deadline_length / elapsed_time))</code></p>
+
+<p>The <code>max(1, …)</code> keeps you from ever earning <em>less</em> than the base. <code>deadline_length</code> is the WU's final deadline and <code>elapsed_time</code> is from assignment to upload (including transit). Both are in days to one decimal place. The <code>k</code> factor defaults to 0.75 but varies by project — more scientifically valuable projects can have a higher <code>k</code>.</p>
+
+<p>Points-per-day (PPD), the headline number on stats pages, is:</p>
+
+<p><code>PPD = 14.4 × base_points × max(1, sqrt(14.4 × k × Expiration / TPF)) / TPF</code></p>
+
+<p>where <code>TPF</code> is time-per-frame, in minutes.</p>
+
+<h2>How do deadlines and timeouts work?</h2>
+
+<p>Every work unit has a <strong>timeout</strong> (after which the unit is reassigned to someone else) and a <strong>deadline</strong> (after which no credit is given). Both are derived from how long the WU took on the benchmark machine:</p>
+
+<p><code>timeout = 20 × daysPerWU + 2</code><br/>
+<code>deadline = max(30 × daysPerWU + 2, 10)</code></p>
+
+<p>The <code>+2</code> buffer absorbs short server outages. Ten days is the minimum deadline. Some projects use shorter or longer deadlines than this formula gives — tight-deadline projects (e.g. some replica-exchange runs) need fast turnaround to do anything useful; loose-deadline projects (e.g. some pathway-sampling runs) don't.</p>
+
+<p>The assignment server takes your hardware speed into account when handing out WUs, so a slower machine won't be given a project it has no chance of finishing in time.</p>
+
+<h2 id="folding-account">What is a Folding@home Account?</h2>
+
+<p>An <strong>account</strong> is a separate, optional layer above usernames and passkeys. It lets you control every machine you fold on from a single login — useful if you have more than one folding rig, or want to check on a home machine from your phone.</p>
+
+<p><strong>Registering.</strong> Open Web Control, click Register, and provide an email address and a passphrase. The passphrase is a password (you can let Web Control generate a four-word one for you); it is not a passkey. Confirm the email link, and any machine you sign in on becomes part of your account.</p>
+
+<p><strong>Cause preference.</strong> Once you're signed in, you can pick a preferred Cause in Account Settings — cancer, infectious disease, neurological disease, etc. The assignment server will try to send you work matching your preference, though it's not guaranteed.</p>
+
+<p><strong>Connecting headless machines.</strong> Servers or other machines without a browser connect via the <em>account token</em> shown in your Account Settings. Write it (and an optional <code>machine-name</code>) into <code>/etc/fah-client/config.xml</code> and restart the client. Rotate the token in Account Settings afterwards so the same token can't be reused by anyone else.</p>
+
+<p><strong>Award certificates.</strong> The stats page inside Web Control includes downloadable certificates for milestone contributions — nice for sharing on social media or a CV.</p>
+
+<h2>Where can I get raw stats data?</h2>
+
+<p>Daily snapshots of the full leaderboards are at:</p>
+
+<ul>
+  <li><a href="https://apps.foldingathome.org/daily_user_summary.txt" rel="noopener" target="_blank">daily_user_summary.txt</a> — every donor's totals</li>
+  <li><a href="https://apps.foldingathome.org/daily_team_summary.txt" rel="noopener" target="_blank">daily_team_summary.txt</a> — every team's totals</li>
+</ul>
+
+<p>These are updated every few hours. Please <strong>do not</strong> run scrapers or crawlers against the live stats web pages — download these files instead. Crawling will get your IP permanently banned.</p>
+

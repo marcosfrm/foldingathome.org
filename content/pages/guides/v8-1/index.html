@@ -1,0 +1,121 @@
+<h2>* OUTDATED *</h2>
+
+<h2 id="introduction-to-v8-bastet-">Introduction to V8 (Bastet)</h2>
+
+<div><figure class="alignright"><img src="/assets/7b5f898c-b199-4295-bb0e-ef6c3477ce26" alt="Statue of the Ancient Egyptian Goddess Bastet" width="195" height="437"/><figcaption>Statue of the Ancient Egyptian Goddess Bastet</figcaption></figure></div>
+
+<p>We are excited to announce version 8 of the Folding@home software. V8 has been code named "<a href="https://en.wikipedia.org/wiki/Bastet" target="_blank" rel="noreferrer noopener">Bastet</a>" in reference to the Ancient Egyptian goddess who is associated with cats and protection from disease.</p>
+
+<p>V8 is a complete rewrite of the Folding@home client software designed to make using Folding@home easier, lay a foundation for new features and to encourage community participation in the software's continued development.</p>
+
+<h2 id="what-s-new-in-v8-">What's New in V8?</h2>
+
+<p>There are several important changes in V8. First, there are now only two parts to the client software, the backend (<a href="https://github.com/FoldingAtHome/fah-client-bastet" target="_blank" rel="noreferrer noopener">fah-client-bastet</a>) which runs behind the scenes handling most of the logic of running Folding@home and the frontend (<a href="https://github.com/FoldingAtHome/fah-web-client-bastet" target="_blank" rel="noreferrer noopener">fah-web-client-bastet</a>) Web Control which provides the user interface. The v8 backend is equivalent to <em>FAHClient</em> in v7. The v8 Web Control combines the features of the v7 <em>Web Control</em>, <em>FAHControl</em> and <em>FAHViewer</em>.</p>
+
+<p>Second, the concept of <em>folding slots</em> in v7 does not exist in v8. Instead of configuring slots you only have to tell Folding@home which compute resources (e.g. CPUs and GPUs) you would like it to use. It will then automatically allocate those resources in the most efficient way. This change both simplifies the setup of Folding@home and makes it possible for Folding@home to allocate multiple CPUs and GPUs to the same Work Unit.  By allocating more resources to a single WU Folding@home can decrease simulation times and achieve scientific results more quickly.</p>
+
+<p>Finally, the advanced interface <em>FAHControl</em> from v7 is no longer a separate application. The new Web Control aims to integrate all of the capabilities of FAHControl. In the future, v8's Web Control will make it possible to monitor all of the machines you have contributing to F@H from one place, no matter where they are located.</p>
+
+<h2 id="downloading-the-beta-software">Downloading the Beta Software</h2>
+
+<p>The v8 client is still in beta testing.  We have been testing it for several months so it is in pretty good shape but there may still be some bugs and missing features.  Beta releases can be found on the <a href="/beta">beta software page</a>. You can still download stable v7 releases on the main <a href="/download">software download page</a>.</p>
+
+<h2 id="installation">Installation</h2>
+
+<p>The v8 client can run on Windows, macOS, Linux and ARM Linux.  The install procedure for v8 is essentially the same as for the v7 client with the exception that on Linux you now only need to install the <em>fah-client</em> package.</p>
+
+<h2 id="v8-software-interface">Using the V8 Software</h2>
+
+<p>The v8 Folding@home software is controlled via a web browser using Web Control. Web Control can be reached by navigating to <a href="https://app.foldingathome.org/" target="_blank" rel="noreferrer noopener">https://app.foldingathome.org/</a>. From this page your browser will attempt to connect to client software running on the same computer the browser is running on.</p>
+
+<div><figure class="aligncenter size-large"><img src="/assets/16905654-a908-4baa-852e-1535800154df" alt="" width="512" height="256"/><figcaption>Web Control's "Connecting" screen.</figcaption></figure></div>
+
+<p>If you have installed Folding@home v8 and it is running then the <strong>Connecting...</strong> screen should disappear after a short delay and you will have access to Web Control.  Note, v8 Web Control cannot be used with v7 clients.</p>
+
+<p>There are four main pages in Web Control:</p>
+
+<ol><li>Client Home Page</li><li>Client Settings</li><li>Log Viewer</li><li>3D Protein Viewer</li></ol>
+
+<h3 id="client-home-page">Client Home Page</h3>
+
+<figure class="size-large"><img src="/assets/e77d6308-2264-4809-a283-f63418be6f33" alt=""/><figcaption>Client home page</figcaption></figure>
+
+<p>The client home page is the first screen you will encounter.  After connecting, it will display the status of your F@H client.  If you have not yet configured a username, team or passkey a dialog will popup asking you to do so via the <strong>Settings</strong> page or choose to fold anonymously.</p>
+
+<div><figure class="aligncenter size-large"><img src="/assets/515604ec-61ec-459c-9369-5a1489fde749" alt=""/><figcaption>This dialog appears if you have not yet configured your client.</figcaption></figure></div>
+
+<p>Once configured, the header at the top of the page will show your username, team and the points earned so far. The buttons in the top right provide quick access to the client settings and log viewer.</p>
+
+<p>Below the header, in the body of the page, is a large green <img style="width: 130px;vertical-align:middle;" src="/assets/59833050-4f60-4c44-8181-a98b99150ccb" alt="Start Folding"> button. After configuring your user settings, click this button to get going. Click it again when you want to pause folding.</p>
+
+<p>Below the header is a list of active <strong>Work Units</strong>. Work Units or WUs are chunks of protein folding simulations. They represent the work assigned to your client. Each line shows the status and progress for one WU. On the right are several buttons under the <strong>Actions</strong> heading. These can be used to dump the WU or view it's log or 3D visualization. You should only dump WUs in exceptional situations.</p>
+
+<p>Below <strong>Work Units</strong> you will find information about <strong>Projects</strong> you are contributing to and <strong>Folding@home News</strong> releases.</p>
+
+<h3 id="client-settings">Client Settings</h3>
+
+<figure class="size-large"><img src="/assets/6c72fecd-e9bf-4030-a27a-227d74d329bf" alt=""/><figcaption>Settings page</figcaption></figure>
+
+<p>The <strong>Settings</strong> page allows you to configure the Folding@home software on your machine. For your changes to take effect, you must click the <img style="width: 100px;vertical-align:middle;" src="/assets/56852f9d-f5b6-4e9c-b4e5-9c4281645114" alt="Save"> button in the top right. Or click <img style="width: 100px;vertical-align:middle;" src="/assets/a38f8441-b66d-4dd1-864e-1168485d794c" alt="Cancel"> to discard unwanted changes.</p>
+
+<h4 id="user-settings">User Settings</h4>
+
+<p>In the <strong>User Settings</strong> section you can set your <strong>Username</strong>, <strong>Team</strong> and <strong>Passkey</strong>. These settings affect how you receive Folding@home points. More information about these settings and the points system can be found in the <a href="/faq">FAQ</a>.</p>
+
+<p>The <strong>Fold Anonymously</strong> checkbox enables anonymous folding, in which case any username, team and passkey settings will not be used.</p>
+
+<h4 id="project-settings">Project Settings</h4>
+
+<p>Check the <strong>Enable Beta</strong> box if you want to contribute to projects that are in beta testing. Beta projects may be less stable and running them can in some cases negatively impact the points you earn. Running beta projects is recommended for experienced F@H contributors only.</p>
+
+<p>Choose a <strong>Cause</strong> preference to tell Folding@home which cause you'd like to support the most. Folding@home will try to assign more projects supporting your preferred cause but it is not guaranteed that you will get only these projects.</p>
+
+<p>Setting a <strong>Project Key</strong> is only useful in the early stages of testing F@H projects. Leave this set to zero unless instructed otherwise.</p>
+
+<h4 id="resource-usage">Resource Usage</h4>
+
+<p>In this section, you can tell Folding@home how to use your compute resources.</p>
+
+<p>Check <strong>Fold When Idle</strong> if you only want Folding@home to operate when your computer is not in use. In practice, this means that while you are moving the mouse or typing, Folding@home will not run. If your computer is setup to go to sleep when idle then Folding@home will not run at all.  To use <strong>Fold When Idle</strong> effectively you may need to configure your computer to only enter sleep mode when running on battery.</p>
+
+<p>The <strong>CPUs</strong> slider can be used to set the number of CPU cores Folding@home uses. You can adjust this value at any time. Setting the value too low may cause some WUs to stop running.</p>
+
+<p>In the <strong>GPUs</strong> section you will find a list of the supported Graphics Processing Units available on your machine. GPU folding is the most efficient and usually earns much higher points. In some cases, folding on the GPU can slow your machine down too much. You can always disable GPU folding here. More information about GPU folding can be found in the <a href="/faq">FAQ</a>.</p>
+
+<h4 id="peers">Peers</h4>
+
+<p>In the <strong>Peers</strong> section you can add the IP addresses or hostnames of other Folding@home clients on your network. You can then control and monitor these remote clients from Web Control much like you could with FAHControl with the v7 software. However, you must configure the remote clients to allow remote access and doing so has security implications. Details on how to do so will be added later.</p>
+
+<h3 id="log-viewer">Log Viewer</h3>
+
+<figure class="size-large"><img src="/assets/5b751012-3f3c-4b71-8b7e-117b3b506678" alt=""/><figcaption>Log Viewer</figcaption></figure>
+
+<p>The <strong>Log Viewer</strong> allows you to view detailed technical information about the folding simulations running on your machine. Making sense of these logs requires expert knowledge of the Folding@home software. If you encounter a problem with F@H you may be asked to share the contents of this log file.</p>
+
+<p>The <strong>Search</strong> bar can be used to filter the log for matching lines. Checking the <strong>Errors</strong> or <strong>Warnings</strong> boxes will filter the log for error and warning messages. The <strong>Reset</strong> button resets the log filters to their defaults. When <strong>Follow</strong> is enabled the log file will automatically scroll down as new information becomes available.</p>
+
+<h3 id="3d-protein-viewer">3D Protein Viewer</h3>
+
+<figure class="size-large"><img src="/assets/b7033e47-62da-45b1-adc3-66501a9d47f1" alt=""/><figcaption>3D protein visualization</figcaption></figure>
+
+<p>The protein viewer displays a 3D view of the protein you are simulating. You can zoom with the mouse wheel and rotate the protein by moving the mouse while holding the left button down.</p>
+
+<p>The <strong>Work Unit Details</strong> panel shows some extra information about the WU. It can be moved out of the way by clicking the arrow in the top left.</p>
+
+<p>There are three different modes for viewing the protein. These can be changed by clicking on the <strong>1</strong>, <strong>2</strong> and <strong>3</strong> buttons. As the simulation progresses it will take snapshots of the protein. You can cycle through these snapshots or <strong>Frames</strong> by clicking the arrow buttons.</p>
+
+<h2 id="getting-help">Getting Help</h2>
+
+<p>If you need more help with Folding@home:</p>
+
+<ul><li>Visit the <a href="/support/">Support Page</a></li><li>Ask questions at <a href="https://foldingforum.org/" target="_blank" rel="noreferrer noopener">Folding Forum</a></li><li>Browse previously reported issues on GitHub at <a href="//github.com/FoldingAtHome/fah-client-bastet/issues" target="_blank" rel="noreferrer noopener">fah-client-bastet</a> or <a href="//github.com/FoldingAtHome/fah-web-client-bastet/issues" target="_blank" rel="noreferrer noopener">fah-web-client-bastet</a>.</li></ul>
+
+<h2 id="open-source-contribution">Open-Source Contribution</h2>
+
+<p>The v8 Folding@home client software is Open-Source. Anyone can get involved in improving Folding@home via our GitHub account. You can report issues, suggest new features or contribute code by visiting the v8 client's GitHub repositories:</p>
+
+<ul><li><a rel="noreferrer noopener" href="https://github.com/FoldingAtHome/fah-client-bastet" target="_blank">github.com/FoldingAtHome/fah-client-bastet</a></li><li><a href="https://github.com/FoldingAtHome/fah-web-client-bastet">github.com/FoldingAtHome/fah-web-client-bastet</a></li></ul>
+
+<p>Only submit new issues on GitHub if you've fully researched the problem, gathered all the relevant information and checked that the issue does not already exist. We get many requests for new features. We can only afford to implement some of them.  Ask for help before creating your first GitHub issue.</p>
+
+<p>You can submit your own changes to the Folding@home software via a GitHub Pull Request (PR). PRs are much more likely to be accepted if they are simple and the code is clean and well tested.</p>

@@ -1,0 +1,22 @@
+<p>Most of the Folding@home codebase is open source — both the donor-facing client and the analysis infrastructure researchers use. This page lists the main components and where to find them.</p>
+<h2>The client</h2>
+<p>As of version 8, the Folding@home donor client is open source on GitHub:</p>
+<ul>
+<li><a href="https://github.com/FoldingAtHome/fah-client-bastet" target="_blank" rel="noopener">fah-client-bastet</a> — the headless folding service that runs on your computer.</li>
+<li><a href="https://github.com/FoldingAtHome/fah-web-client-bastet" target="_blank" rel="noopener">fah-web-client-bastet</a> — the local web UI you interact with in your browser.</li>
+</ul>
+<p>Bug reports and contributions are welcome on either repo's issue tracker.</p>
+<h2>The simulation engines</h2>
+<p>The actual molecular-dynamics computation runs in folding c<em>ores</em>, which wrap two well-established open-source MD packages:</p>
+<ul>
+<li><a href="https://gromacs.org/" target="_blank" rel="noopener">GROMACS</a> — used for most CPU and many GPU work units.</li>
+<li><a href="https://openmm.org/" target="_blank" rel="noopener">OpenMM</a> — used for GPU-heavy projects, particularly on AMD and modern NVIDIA hardware.</li>
+</ul>
+<p>Any modifications Folding@home has made to either package have been contributed back upstream.</p>
+<h2>Analysis infrastructure</h2>
+<p>Two methods libraries developed for F@h have become general-purpose tools used well beyond the project:</p>
+<ul>
+<li><strong>MSMBuilder</strong> (2009) — the open-source library for building Markov State Models from short trajectories. Used by labs with no connection to F@h.</li>
+<li><strong>Copernicus</strong> (2011) — an open-source workflow engine for running adaptive sampling on clusters and supercomputers.</li>
+</ul>
+<p>Both came out of the work that earned the original developer team the American Chemical Society's Thomas Kuhn Paradigm Shift Award. <a href="/science/folding">More on the science &rarr;</a></p>
