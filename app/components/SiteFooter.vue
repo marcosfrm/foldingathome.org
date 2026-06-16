@@ -4,8 +4,8 @@ footer.site-footer
     ul.sponsors
       li(v-for="s in sponsors" :key="s.id")
         a(v-if="s.url" :href="s.url" target="_blank" rel="noopener" :title="s.name")
-          img(:src="`/assets/${s.id}`" :alt="s.name")
-        img(v-else :src="`/assets/${s.id}`" :alt="s.name")
+          img(:src="assetUrl(s.id)" :alt="s.name")
+        img(v-else :src="assetUrl(s.id)" :alt="s.name")
   .copyright
     p © {{ year }} Folding@home.
 </template>
@@ -31,6 +31,7 @@ export default {
       ],
     }
   },
+  methods: { assetUrl },
 }
 </script>
 

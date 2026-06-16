@@ -92,24 +92,22 @@ section.why
   .inner
     h2.section-title We're fighting real diseases.
     .cards
-      //- Images copied locally (apps/web/public/images/landing/) so the
-      //- landing page survives any CMS asset rename/delete. Pre-resized to
-      //- 800px wide max to avoid needing IPX/sharp at runtime; plain <img>
-      //- is enough for the small card thumbnails.
+      //- Card thumbnails load the API's scaled web rendition; plain <img>
+      //- is enough for these small thumbnails.
       NuxtLink.card(to="/diseases/cancer")
-        .thumb: img(:src="'/assets/15df6a3f-91dd-4207-9349-9af8a6c893d0'" alt="" loading="lazy" width="800" height="600")
+        .thumb: img(:src="assetUrl('15df6a3f-91dd-4207-9349-9af8a6c893d0')" alt="" loading="lazy" width="800" height="600")
         h3 Cancer
         p Our work on BRCA1 revealed new therapeutic strategies to combat breast cancer.
       NuxtLink.card(to="/diseases/infectious-diseases/covid-19")
-        .thumb: img(:src="'/assets/1e444ae3-51de-435a-95e7-b8bef1bb829c'" alt="" loading="lazy" width="800" height="600")
+        .thumb: img(:src="assetUrl('1e444ae3-51de-435a-95e7-b8bef1bb829c')" alt="" loading="lazy" width="800" height="600")
         h3 COVID-19
         p During COVID-19 we hit 2.43 exaflops, the first computing system in history to cross that threshold, and helped identify a potential new antiviral in animal testing.
       NuxtLink.card(to="/diseases/neurological-diseases/alzheimers-disease")
-        .thumb: img(:src="'/assets/26645c95-0c27-49d5-a742-18334f098694'" alt="" loading="lazy" width="800" height="600")
+        .thumb: img(:src="assetUrl('26645c95-0c27-49d5-a742-18334f098694')" alt="" loading="lazy" width="800" height="600")
         h3 Alzheimer's
         p Our work on ApoE is uncovering the mechanism of the most common cause of dementia.
       NuxtLink.card(to="/diseases/infectious-diseases/ebola-virus")
-        .thumb: img(:src="'/assets/d5f1961c-5b7e-454f-91d9-9bfff5c89551'" alt="" loading="lazy" width="800" height="600")
+        .thumb: img(:src="assetUrl('d5f1961c-5b7e-454f-91d9-9bfff5c89551')" alt="" loading="lazy" width="800" height="600")
         h3 Ebola
         p We've found new ways to thwart Ebola by identifying transient "cryptic-pockets" in the virus protein that other methods had missed.
 

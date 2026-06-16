@@ -16,6 +16,24 @@ if (existsSync(envLocal))
     if (m) process.env[m[1]] = m[2]
   }
 
+const apiUrl = process.env.NUXT_PUBLIC_API_URL || 'https://api.foldingathome.org'
+
+// Build-time: rewrite legacy `/assets/<uuid>` references in static page
+// bodies to the API's web rendition.  Done here (not in the committed HTML)
+// so the API hostname stays config-driven.
+const rewriteContentAssets = () => ({
+  name: 'rewrite-content-asset-urls',
+  enforce: 'pre' as const,
+  load(id: string) {
+    const [file, query] = id.split('?')
+    if (!query?.includes('raw') || !/[\\/]content[\\/]pages[\\/].*\.html$/.test(file))
+      return
+    const html = readFileSync(file, 'utf8')
+      .replace(/\/assets\/([a-f0-9-]{36})/gi, (_m, uuid) => `${apiUrl}/asset/${uuid}/web`)
+    return `export default ${JSON.stringify(html)}`
+  },
+})
+
 export default defineNuxtConfig({
   compatibilityDate: '2026-01-01',
   ssr: true,
@@ -23,9 +41,7 @@ export default defineNuxtConfig({
   modules: ['@nuxt/image'],
 
   runtimeConfig: {
-    public: {
-      apiUrl: 'https://api.foldingathome.org',
-    },
+    public: { apiUrl },
   },
 
   // Hybrid rendering: filesystem-backed pages are prerendered at build
@@ -36,7 +52,6 @@ export default defineNuxtConfig({
     '/news/**':        { prerender: false },
     '/news/rss.xml':   { prerender: false },
     '/sitemap.xml':    { prerender: false },
-    '/assets/**':      { prerender: false },
   },
 
   nitro: {
@@ -73,6 +88,7 @@ export default defineNuxtConfig({
 
 
   vite: {
+    plugins: [rewriteContentAssets()],
     css: {
       preprocessorOptions: {
         stylus: { additionalData: tokens + '\n' },

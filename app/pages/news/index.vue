@@ -30,7 +30,7 @@ section.news
             time(:datetime="a.published || a.created") {{ formatDate(a.published || a.created) }}
             span.author(v-if="a.author_name") &nbsp;by {{ a.author_name }}
         NuxtLink.thumb(v-if="a.hero" :to="`/news/${a.slug}`")
-          img(:src="`/assets/${a.hero}`" alt="")
+          img(:src="assetUrl(a.hero)" alt="")
         .summary
           p(v-if="a.excerpt") {{ a.excerpt }}
           NuxtLink.read-more(:to="`/news/${a.slug}`") Read more
@@ -116,6 +116,7 @@ section.news
     display block
     width 100%
     max-width 260px
+    max-height 200px
     height auto
 
 .summary p

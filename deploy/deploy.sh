@@ -22,11 +22,11 @@ ssh -o BatchMode=yes "$TARGET" true \
 cd "$REPO_ROOT"
 
 log "rsync public/ → ${TARGET}:${REMOTE_ROOT}/public/"
-rsync -azO --delete --info=stats1 --no-o --no-g \
+rsync -azJO --delete --info=stats1 --no-o --no-g \
   .output/public/ "${TARGET}:${REMOTE_ROOT}/public/"
 
 log "rsync server/ → ${TARGET}:${REMOTE_ROOT}/server/"
-rsync -azO --delete --info=stats1 --no-o --no-g \
+rsync -azJO --delete --info=stats1 --no-o --no-g \
   .output/server/ "${TARGET}:${REMOTE_ROOT}/server/"
 
 log "fix ownership + restart"

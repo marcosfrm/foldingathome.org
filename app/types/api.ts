@@ -48,10 +48,6 @@ export interface AssetMeta {
   updated: string
 }
 
-export interface Asset extends AssetMeta {
-  data: string // base64
-}
-
 export interface Author {
   id: number
   name: string
