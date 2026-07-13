@@ -105,15 +105,6 @@ useHead({ title: meta.title })
     height auto
     margin 0 auto
 
-  .body :deep(figcaption)
-    margin-top 0.5rem
-    padding 0.5rem 0
-    font-size 0.85rem
-    line-height 1.4
-    color text-color
-    opacity 0.8
-    font-style italic
-
   // Buttons converted from [vc_btn] shortcodes
   .body :deep(.btn)
     display inline-block

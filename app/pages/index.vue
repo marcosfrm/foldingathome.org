@@ -45,13 +45,16 @@ section.hero
         loading="eager"
       )
     button.hero-play(
-      @click="heroPlaying = true"
+      @click="heroPlaying = heroCollapsed = true"
       type="button"
-      aria-label="Play the protein viewer"
-      title="Play the interactive protein viewer"
+      aria-label="Open the interactive 3D protein viewer"
+      title="Open the interactive 3D protein viewer"
     )
-      svg(viewBox="0 0 24 24" aria-hidden="true")
-        polygon(points="8,5 19,12 8,19" fill="currentColor")
+      svg(viewBox="0 0 32 32" aria-hidden="true")
+        circle(cx="16" cy="16" r="13" fill="none" stroke="currentColor" stroke-width="0.5")
+        ellipse(cx="16" cy="16" rx="13" ry="6.5" fill="none" stroke="currentColor" stroke-width="0.7" opacity="0.55")
+        ellipse(cx="16" cy="16" rx="6.5" ry="13" fill="none" stroke="currentColor" stroke-width="0.7" opacity="0.55")
+        text(x="16" y="16" text-anchor="middle" dominant-baseline="middle" font-size="9" font-weight="700" fill="currentColor") 3D
   LazyHeroProteinViewer.hero-viewer(v-else)
   .hero-overlay
     .hero-inner(:class="{ collapsed: heroCollapsed }")
@@ -292,29 +295,22 @@ section
     top 1.25rem
     right 1.25rem
     z-index 2
-    width 56px
-    height 56px
     display grid
     place-items center
-    background rgba(0, 0, 0, 0.55)
-    backdrop-filter blur(8px)
-    -webkit-backdrop-filter blur(8px)
-    border 2px solid rgba(255, 255, 255, 0.75)
-    border-radius 50%
+    background transparent
+    border 0
+    padding 0
     color text-light
     cursor pointer
-    transition background 0.15s, transform 0.15s, border-color 0.15s
     pointer-events auto
 
-  .hero-play:hover
-    background rgba(0, 0, 0, 0.75)
-    border-color text-light
-    transform scale(1.05)
+    svg
+      transition transform 0.15s ease-in-out
+      width 64px
+      height 64px
 
-  .hero-play svg
-    width 22px
-    height 22px
-    margin-left 3px  // optical centering: play triangle has more weight on the right
+      &:hover
+        transform scale(1.1)
 
   .hero-overlay
     position relative
