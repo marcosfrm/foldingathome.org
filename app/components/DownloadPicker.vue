@@ -17,6 +17,8 @@ export default {
     subdir:   { type: String, default: '' },
     projects: { type: [Array, String], default: () => ['fah-client'] },
     base:     { type: String, default: 'https://download.foldingathome.org' },
+    // Icons are served locally; data (platforms/meta.json) still comes from base.
+    iconBase: { type: String, default: '/images/download' },
   },
 
   data() {
@@ -29,8 +31,6 @@ export default {
   },
 
   computed: {
-    iconBase() { return this.base + '/images' },
-
     projectList() {
       if (Array.isArray(this.projects)) return this.projects
       return String(this.projects).split(/\s+/).filter(Boolean)
